@@ -14,7 +14,8 @@ public class HttpGetService extends AbsHttpService {
         return HttpRequest.newBuilder()
                 .uri(URI.create(url + "?" + requestParams(param)))
                 .GET()
-                .header("Content-Type", "text/plain; charset=euc-kr")
+//                .header("Content-Type", "text/plain; charset=euc-kr")
+                .header("Content-Type", "application/json")
                 .build();
     }
 }

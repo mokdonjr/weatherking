@@ -57,9 +57,11 @@ public abstract class AbsHttpService extends BaseBean implements IHttpService {
                 if (sb.length() > 0) {
                     sb.append("&");
                 }
-                sb.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
+//                sb.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
+                sb.append(entry.getKey().toString());
                 sb.append("=");
-                sb.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
+//                sb.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
+                sb.append(entry.getValue().toString());
             }
         }
         return sb.toString();
