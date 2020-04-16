@@ -1,22 +1,22 @@
-package com.example.weatherking.vfinfo.data;
+package com.example.weatherking.vfinfo.data.response;
 
 public abstract class AbsVFItemData extends AbsVFItem {
     // 발표일자 (yyyyMMdd)
-    private String baseDate;
+    protected String baseDate;
     // 발표시각 (HHmm)
-    private String baseTime;
+    protected String baseTime;
     // 예보일자 (yyyyMMdd)
-    private String fcstDate;
+    protected String fcstDate;
     // 예보시각 (HHmm)
-    private String fcstTime;
+    protected String fcstTime;
     // 자료구분문자
-    private String category;
+    protected String category;
     // 예보값
-    private String fcstValue; // optional
+    protected String fcstValue; // optional
     // 예보지점 x좌표
-    private Integer nx; // optional
+    protected Integer nx; // optional
     // 예보지점 y좌표
-    private Integer ny; // optional
+    protected Integer ny; // optional
 
     public String getBaseDate() {
         return baseDate;
@@ -80,5 +80,19 @@ public abstract class AbsVFItemData extends AbsVFItem {
 
     public void setNy(Integer ny) {
         this.ny = ny;
+    }
+
+    @Override
+    public String toString() {
+        return "AbsVFItemData{" +
+                "baseDate='" + baseDate + '\'' +
+                ", baseTime='" + baseTime + '\'' +
+                ", fcstDate='" + fcstDate + '\'' +
+                ", fcstTime='" + fcstTime + '\'' +
+                ", category='" + category + '\'' +
+                ", fcstValue='" + fcstValue + '\'' +
+                ", nx=" + nx +
+                ", ny=" + ny +
+                '}';
     }
 }

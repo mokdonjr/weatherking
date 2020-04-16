@@ -1,4 +1,6 @@
-package com.example.weatherking.vfinfo.data;
+package com.example.weatherking.vfinfo.data.response;
+
+import com.example.weatherking.vfinfo.data.JsonConvertible;
 
 public class VFResponse implements JsonConvertible<VFResponse> {
     private VFHeader header;
@@ -28,5 +30,13 @@ public class VFResponse implements JsonConvertible<VFResponse> {
 
     public void setBody(VFBody body) {
         this.body = body;
+    }
+
+    @Override
+    public String toString() {
+        return "VFResponse{" +
+                "header=" + header +
+                ", body=" + body +
+                '}';
     }
 }

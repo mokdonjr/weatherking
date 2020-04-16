@@ -1,8 +1,10 @@
-package com.example.weatherking.vfinfo.data;
+package com.example.weatherking.vfinfo.data.response;
+
+import com.example.weatherking.vfinfo.data.JsonConvertible;
 
 import java.util.List;
 
-public class VFBody implements JsonConvertible<VFBody>  {
+public class VFBody implements JsonConvertible<VFBody> {
     private String dataType;
     private List<VFItem> items;
     private Integer pageNo;
@@ -59,4 +61,14 @@ public class VFBody implements JsonConvertible<VFBody>  {
         this.totalCount = totalCount;
     }
 
+    @Override
+    public String toString() {
+        return "VFBody{" +
+                "dataType='" + dataType + '\'' +
+                ", items=" + items +
+                ", pageNo=" + pageNo +
+                ", numOfRows=" + numOfRows +
+                ", totalCount=" + totalCount +
+                '}';
+    }
 }
