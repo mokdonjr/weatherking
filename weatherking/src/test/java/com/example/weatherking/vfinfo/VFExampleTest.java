@@ -2,6 +2,7 @@ package com.example.weatherking.vfinfo;
 
 import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.vfinfo.config.VFConfig;
+import com.example.weatherking.vfinfo.data.VFDataType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,12 +19,12 @@ import java.util.Date;
  * 동네예보 조회서비스 api 테스트
  * 	http://apis.data.go.kr/1360000/VilageFcstInfoService
  */
-public class VFApiTest {
+public class VFExampleTest {
 
     // 아직 인증 못받음
     private String serviceKey = VFConfig.getServiceKey();
 
-    private String dataType = "JSON";
+    private String dataType = VFDataType.JSON.getValue();
 
     /**
      * 예보보전조회 테스트
@@ -34,13 +35,15 @@ public class VFApiTest {
     public void testGetFcstVersion() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService/getFcstVersion"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + serviceKey); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
+//        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("1", StandardCharsets.UTF_8)); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("10", StandardCharsets.UTF_8)); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(dataType, StandardCharsets.UTF_8)); /*요청자료형식(XML/JSON)Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("ftype",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("ODAM", StandardCharsets.UTF_8)); /*파일구분-ODAM: 동네예보실황, -VSRT: 동네예보초단기, -SHRT: 동네예보단기*/
         Date date = DateUtil.getDateAfterHours(-1);
         urlBuilder.append("&" + URLEncoder.encode("basedatetime",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(DateUtil.getDateStringFormat(date, "yyyyMMddHHmm"), StandardCharsets.UTF_8)); /*각각의 base_time 로 검색 참고자료 참조*/
+//        urlBuilder.append("&" + URLEncoder.encode("base_date",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(DateUtil.getDateStringFormat(date, "yyyyMMdd"), StandardCharsets.UTF_8)); /*15년 12월 1일발표*/
+//        urlBuilder.append("&" + URLEncoder.encode("base_time",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("0500", StandardCharsets.UTF_8)); /*05시 발표*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -74,7 +77,7 @@ public class VFApiTest {
     public void testGetVilageFcst() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + serviceKey); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
+//        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("1", StandardCharsets.UTF_8)); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("10", StandardCharsets.UTF_8)); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(dataType, StandardCharsets.UTF_8)); /*요청자료형식(XML/JSON)Default: XML*/
@@ -116,7 +119,7 @@ public class VFApiTest {
     public void testGetUltraSrcFcst() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService/getUltraSrtFcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + serviceKey); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
+//        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo", StandardCharsets.UTF_8) + "=" + URLEncoder.encode("1", StandardCharsets.UTF_8)); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows", StandardCharsets.UTF_8) + "=" + URLEncoder.encode("10", StandardCharsets.UTF_8)); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(dataType, StandardCharsets.UTF_8)); /*요청자료형식(XML/JSON)Default: XML*/
@@ -158,7 +161,7 @@ public class VFApiTest {
     public void testGetUltraSrcNcst() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService/getUltraSrtNcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=서비스키"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
+//        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("1", StandardCharsets.UTF_8)); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("10", StandardCharsets.UTF_8)); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType",StandardCharsets.UTF_8) + "=" + URLEncoder.encode(dataType, StandardCharsets.UTF_8)); /*요청자료형식(XML/JSON)Default: XML*/

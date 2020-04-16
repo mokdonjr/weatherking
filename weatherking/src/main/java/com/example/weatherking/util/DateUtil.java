@@ -20,12 +20,32 @@ public class DateUtil {
         return new SimpleDateFormat(format).format(date);
     }
 
+    public static String getDateStringFormat(String format) {
+        return getDateStringFormat(getCurrentDate(), format);
+    }
+
+    public static String getDateStringFormatyyyyMMddHHmm(Date date) {
+        return getDateStringFormat(date, "yyyyMMddHHmm");
+    }
+
+    public static String getDateStringFormatyyyyMMddHHmm() {
+        return getDateStringFormatyyyyMMddHHmm(getCurrentDate());
+    }
+
     public static String getDateStringFormatyyyyMMdd(Date date) {
         return getDateStringFormat(date, "yyyyMMdd");
     }
 
+    public static String getDateStringFormatyyyyMMdd() {
+        return getDateStringFormatyyyyMMdd(getCurrentDate());
+    }
+
     public static String getDateStringFormatHHmm(Date date) {
         return getDateStringFormat(date, "HHmm");
+    }
+
+    public static String getDateStringFormatHHmm() {
+        return getDateStringFormatHHmm(getCurrentDate());
     }
 
     public static Date getDateAfterMillis(Date date, int millis) {
