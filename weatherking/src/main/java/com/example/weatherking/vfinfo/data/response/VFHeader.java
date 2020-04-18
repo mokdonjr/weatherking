@@ -1,6 +1,8 @@
 package com.example.weatherking.vfinfo.data.response;
 
 import com.example.weatherking.vfinfo.data.JsonConvertible;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VFHeader implements JsonConvertible<VFHeader> {
     private String resultCode;
@@ -13,7 +15,19 @@ public class VFHeader implements JsonConvertible<VFHeader> {
 
     @Override
     public VFHeader deserializeJson(String json) {
-        return null;
+        try {
+            var om = new ObjectMapper();
+            JsonNode jsonNode = om.readTree(json);
+            if (jsonNode.has("resultCode")) {
+                resultCode = jsonNode.get("resultCode").toString();
+            }
+            if (jsonNode.has("resultMsg")) {
+                resultMsg = jsonNode.get("resultMsg").toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     public String getResultCode() {

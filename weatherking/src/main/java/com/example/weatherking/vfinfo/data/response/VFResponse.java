@@ -1,6 +1,8 @@
 package com.example.weatherking.vfinfo.data.response;
 
 import com.example.weatherking.vfinfo.data.JsonConvertible;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VFResponse implements JsonConvertible<VFResponse> {
     private VFHeader header;
@@ -13,7 +15,19 @@ public class VFResponse implements JsonConvertible<VFResponse> {
 
     @Override
     public VFResponse deserializeJson(String json) {
-        return null;
+        try {
+            var om = new ObjectMapper();
+            JsonNode jsonNode = om.readTree(json);
+            if (jsonNode.has("header")) {
+                header = new VFHeader().deserializeJson(jsonNode.get("header").toString());
+            }
+            if (jsonNode.has("body")) {
+                body = new VFBody().deserializeJson(jsonNode.get("body").toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     public VFHeader getHeader() {

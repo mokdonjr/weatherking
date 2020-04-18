@@ -3,6 +3,8 @@ package com.example.weatherking.vfinfo.data.response;
 import com.example.weatherking.vfinfo.data.JsonConvertible;
 import com.example.weatherking.vfinfo.data.VFFileType;
 import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VFItemVersion extends AbsVFItem implements JsonConvertible<VFItemVersion> {
 
@@ -23,7 +25,19 @@ public class VFItemVersion extends AbsVFItem implements JsonConvertible<VFItemVe
 
     @Override
     public VFItemVersion deserializeJson(String json) {
-        return null;
+        try {
+            var om = new ObjectMapper();
+            JsonNode jsonNode = om.readTree(json);
+            if (jsonNode.has("version")) {
+                version = jsonNode.get("version").toString();
+            }
+            if (jsonNode.has("filetype")) {
+                filetype = VFFileType.valueOf(jsonNode.get("filetype").toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     public String getVersion() {

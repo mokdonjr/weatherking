@@ -1,22 +1,11 @@
 package com.example.weatherking.vfinfo.data.response;
 
-import com.example.weatherking.vfinfo.data.JsonConvertible;
 import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
 
-public class VFItemData extends AbsVFItemData implements JsonConvertible<VFItemData> {
+public class VFItemData extends AbsVFItemData {
     @Override
     public VFType getVFType() {
         return VFType.VF_DATA;
-    }
-
-    @Override
-    public String serializeJson() {
-        return null;
-    }
-
-    @Override
-    public VFItemData deserializeJson(String json) {
-        return null;
     }
 
     @Override
