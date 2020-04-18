@@ -1,10 +1,12 @@
 package com.example.weatherking.util;
 
+import com.example.weatherking.StaticBaseBean;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateUtil {
+public class DateUtil extends StaticBaseBean {
 
     private static Date testDate = null;
 

@@ -2,6 +2,7 @@ package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.http.HttpGateService;
+import com.example.weatherking.util.StringUtil;
 import com.example.weatherking.vfinfo.data.VFDataType;
 import com.example.weatherking.vfinfo.data.request.VFRequest;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
@@ -59,7 +60,8 @@ public abstract class AbsVFService extends BaseBean implements VFService {
                 var body = new VFBody();
                 var jsonNodeBody = jsonNodeResponse.get("body");
                 if (jsonNodeBody.has("dataType")) {
-                    body.setDataType(VFDataType.valueOf(jsonNodeBody.get("dataType").toString()));
+                    String dataType = jsonNodeBody.get("dataType").toString();
+                    body.setDataType(VFDataType.valueOf(StringUtil.trimDoubleQuotes(dataType)));
                 }
                 if (jsonNodeBody.has("items")) {
                     List<VFItem> list = new ArrayList<>();
