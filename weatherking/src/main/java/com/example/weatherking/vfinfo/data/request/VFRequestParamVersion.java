@@ -1,7 +1,7 @@
 package com.example.weatherking.vfinfo.data.request;
 
 import com.example.weatherking.vfinfo.data.VFFileType;
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.example.weatherking.vfinfo.data.VFType;
 
 public class VFRequestParamVersion extends AbsVFRequestParam {
     @Override

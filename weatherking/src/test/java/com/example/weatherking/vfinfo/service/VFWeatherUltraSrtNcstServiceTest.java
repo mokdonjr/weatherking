@@ -1,8 +1,8 @@
 package com.example.weatherking.vfinfo.service;
 
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.example.weatherking.vfinfo.data.VFType;
 
-public class VFUltraSrtNcstServiceTest extends AbsVFDataServiceTest {
+public class VFWeatherUltraSrtNcstServiceTest extends AbsVFWeatherServiceTest {
 
     @Override
     protected VFType getVFType() {

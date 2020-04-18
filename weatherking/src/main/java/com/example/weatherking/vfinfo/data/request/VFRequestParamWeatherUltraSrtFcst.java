@@ -1,8 +1,8 @@
 package com.example.weatherking.vfinfo.data.request;
 
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.example.weatherking.vfinfo.data.VFType;
 
-public class VFRequestParamUltraSrtFcst extends AbsVFRequestParamData {
+public class VFRequestParamWeatherUltraSrtFcst extends AbsVFRequestParamWeather {
     @Override
     public VFType getVFType() {
         return VFType.VF_ULTRA_SRT_FCST;

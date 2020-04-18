@@ -1,7 +1,7 @@
 package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.BaseBean;
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.example.weatherking.vfinfo.data.VFType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +11,18 @@ public class VFGateService extends BaseBean {
     @Autowired
     private VFVersionService vfVersionService;
     @Autowired
-    private VFDataService vfDataService;
+    private VFWeatherNormalService vfWeatherService;
     @Autowired
-    private VFUltraSrtFcstService vfUltraSrtFcstService;
+    private VFWeatherUltraSrtFcstService vfWeatherUltraSrtFcstService;
     @Autowired
-    private VFUltraSrtNcstService vfUltraSrtNcstService;
+    private VFWeatherUltraSrtNcstService vfWeatherUltraSrtNcstService;
 
     public VFService getVFService(VFType vfType) {
         switch (vfType) {
             case VF_VERSION: return vfVersionService;
-            case VF_DATA: return vfDataService;
-            case VF_ULTRA_SRT_FCST: return vfUltraSrtFcstService;
-            case VF_ULTRA_SRT_NCST: return vfUltraSrtNcstService;
+            case VF_NORMAL: return vfWeatherService;
+            case VF_ULTRA_SRT_FCST: return vfWeatherUltraSrtFcstService;
+            case VF_ULTRA_SRT_NCST: return vfWeatherUltraSrtNcstService;
             default: break;
         }
         return null;

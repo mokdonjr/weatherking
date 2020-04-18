@@ -1,6 +1,6 @@
 package com.example.weatherking.vfinfo.data.request;
 
-public abstract class AbsVFRequestParamData extends AbsVFRequestParam {
+public abstract class AbsVFRequestParamWeather extends AbsVFRequestParam {
     // 발표일자 (yyyyMMdd)
     protected String base_date;
     // 발표시각

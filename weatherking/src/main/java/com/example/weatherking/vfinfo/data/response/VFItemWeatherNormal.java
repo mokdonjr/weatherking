@@ -1,11 +1,11 @@
 package com.example.weatherking.vfinfo.data.response;
 
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
+import com.example.weatherking.vfinfo.data.VFType;
 
-public class VFItemData extends AbsVFItemData {
+public class VFItemWeatherNormal extends AbsVFItemWeather {
     @Override
     public VFType getVFType() {
-        return VFType.VF_DATA;
+        return VFType.VF_NORMAL;
     }
 
     @Override

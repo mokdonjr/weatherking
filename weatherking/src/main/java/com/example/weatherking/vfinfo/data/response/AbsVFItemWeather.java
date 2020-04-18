@@ -1,10 +1,6 @@
 package com.example.weatherking.vfinfo.data.response;
 
-import com.example.weatherking.vfinfo.data.JsonConvertible;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-public abstract class AbsVFItemData extends AbsVFItem implements JsonConvertible<VFItem> {
+public abstract class AbsVFItemWeather extends AbsVFItem {
     // 발표일자 (yyyyMMdd)
     protected String baseDate;
     // 발표시각 (HHmm)
@@ -21,46 +17,6 @@ public abstract class AbsVFItemData extends AbsVFItem implements JsonConvertible
     protected Integer nx; // optional
     // 예보지점 y좌표
     protected Integer ny; // optional
-
-    @Override
-    public String serializeJson() {
-        return null;
-    }
-
-    @Override
-    public VFItem deserializeJson(String json) {
-        try {
-            var om = new ObjectMapper();
-            JsonNode jsonNode = om.readTree(json);
-            if (jsonNode.has("baseDate")) {
-                baseDate = jsonNode.get("baseDate").toString();
-            }
-            if (jsonNode.has("baseTime")) {
-                baseTime = jsonNode.get("baseTime").toString();
-            }
-            if (jsonNode.has("fcstDate")) {
-                fcstDate = jsonNode.get("fcstDate").toString();
-            }
-            if (jsonNode.has("fcstTime")) {
-                fcstTime = jsonNode.get("fcstTime").toString();
-            }
-            if (jsonNode.has("category")) {
-                category = jsonNode.get("category").toString();
-            }
-            if (jsonNode.has("fcstValue")) {
-                fcstValue = jsonNode.get("fcstValue").toString();
-            }
-            if (jsonNode.has("nx")) {
-                nx = jsonNode.get("nx").asInt();
-            }
-            if (jsonNode.has("ny")) {
-                ny = jsonNode.get("ny").asInt();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
 
     public String getBaseDate() {
         return baseDate;

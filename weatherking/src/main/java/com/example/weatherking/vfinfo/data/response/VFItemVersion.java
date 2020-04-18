@@ -1,12 +1,9 @@
 package com.example.weatherking.vfinfo.data.response;
 
-import com.example.weatherking.vfinfo.data.JsonConvertible;
 import com.example.weatherking.vfinfo.data.VFFileType;
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.weatherking.vfinfo.data.VFType;
 
-public class VFItemVersion extends AbsVFItem implements JsonConvertible<VFItemVersion> {
+public class VFItemVersion extends AbsVFItem {
 
     @Override
     public VFType getVFType() {
@@ -17,28 +14,6 @@ public class VFItemVersion extends AbsVFItem implements JsonConvertible<VFItemVe
     private String version; // ex) 20170117082027
     // 파일 구분
     private VFFileType filetype;
-
-    @Override
-    public String serializeJson() {
-        return null;
-    }
-
-    @Override
-    public VFItemVersion deserializeJson(String json) {
-        try {
-            var om = new ObjectMapper();
-            JsonNode jsonNode = om.readTree(json);
-            if (jsonNode.has("version")) {
-                version = jsonNode.get("version").toString();
-            }
-            if (jsonNode.has("filetype")) {
-                filetype = VFFileType.valueOf(jsonNode.get("filetype").toString());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
 
     public String getVersion() {
         return version;

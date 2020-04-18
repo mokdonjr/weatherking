@@ -4,9 +4,9 @@ import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.vfinfo.config.VFConfig;
 import com.example.weatherking.vfinfo.data.VFDataType;
 import com.example.weatherking.vfinfo.data.VFFileType;
+import com.example.weatherking.vfinfo.data.VFType;
 import com.example.weatherking.vfinfo.data.request.VFRequest;
 import com.example.weatherking.vfinfo.data.request.VFRequestParamVersion;
-import com.example.weatherking.vfinfo.service.AbsVFService.VFType;
 
 public class VFVersionServiceTest extends AbsVFServiceTest {
 
