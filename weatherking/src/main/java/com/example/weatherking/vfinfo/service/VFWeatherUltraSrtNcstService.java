@@ -1,6 +1,8 @@
 package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.vfinfo.data.VFType;
+import com.example.weatherking.vfinfo.data.response.VFCategory;
+import com.example.weatherking.vfinfo.data.response.VFCategoryWeatherUltraSrtNcst;
 import com.example.weatherking.vfinfo.data.response.VFItem;
 import com.example.weatherking.vfinfo.data.response.VFItemWeatherUltraSrcNcst;
 import org.springframework.stereotype.Service;
@@ -18,5 +20,10 @@ public class VFWeatherUltraSrtNcstService extends AbsVFWeatherService {
     @Override
     public VFItem getVFItemInstance() {
         return new VFItemWeatherUltraSrcNcst();
+    }
+
+    @Override
+    protected VFCategory getVFCategory(String category) {
+        return VFCategoryWeatherUltraSrtNcst.valueOf(category);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.vfinfo.data.VFType;
+import com.example.weatherking.vfinfo.data.response.VFCategory;
+import com.example.weatherking.vfinfo.data.response.VFCategoryWeatherNormal;
 import com.example.weatherking.vfinfo.data.response.VFItem;
 import com.example.weatherking.vfinfo.data.response.VFItemWeatherNormal;
 import org.springframework.stereotype.Service;
@@ -18,5 +20,10 @@ public class VFWeatherNormalService extends AbsVFWeatherService {
     @Override
     public VFItem getVFItemInstance() {
         return new VFItemWeatherNormal();
+    }
+
+    @Override
+    protected VFCategory getVFCategory(String category) {
+        return VFCategoryWeatherNormal.valueOf(category);
     }
 }

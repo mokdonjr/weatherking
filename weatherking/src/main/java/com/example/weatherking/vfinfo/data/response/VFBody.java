@@ -54,7 +54,7 @@ public class VFBody {
     @Override
     public String toString() {
         return "VFBody{" +
-                "dataType='" + dataType + '\'' +
+                "dataType=" + dataType +
                 ", items=" + items +
                 ", pageNo=" + pageNo +
                 ", numOfRows=" + numOfRows +

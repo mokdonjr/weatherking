@@ -3,6 +3,7 @@ package com.example.weatherking.vfinfo.service;
 import com.example.weatherking.vfinfo.data.request.AbsVFRequestParamWeather;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
 import com.example.weatherking.vfinfo.data.response.AbsVFItemWeather;
+import com.example.weatherking.vfinfo.data.response.VFCategory;
 import com.example.weatherking.vfinfo.data.response.VFItem;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -26,7 +27,8 @@ public abstract class AbsVFWeatherService extends AbsVFService {
             data.setBaseTime(jsonNode.get("baseTime").toString());
         }
         if (jsonNode.has("category")) {
-            data.setCategory(jsonNode.get("category").toString());
+            VFCategory vfCategory = getVFCategory(jsonNode.get("category").toString());
+            data.setCategory(vfCategory);
         }
         if (jsonNode.has("fcstDate")) {
             data.setFcstDate(jsonNode.get("fcstDate").toString());
@@ -45,6 +47,8 @@ public abstract class AbsVFWeatherService extends AbsVFService {
         }
         return data;
     }
+
+    protected abstract VFCategory getVFCategory(String category);
 
     @Override
     protected Map<Object, Object> getParamsFromVFRequestParam(VFRequestParam vfRequestParam) {

@@ -4,7 +4,6 @@ import com.example.weatherking.vfinfo.data.VFType;
 import com.example.weatherking.vfinfo.data.request.VFRequest;
 import com.example.weatherking.vfinfo.data.response.VFItem;
 import com.example.weatherking.vfinfo.data.response.VFResponseDefault;
-import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * 동네예보 서비스
@@ -37,12 +36,4 @@ public interface VFService {
      * @return
      */
     VFResponseDefault request(VFRequest data);
-
-    /**
-     * 동네예보 응답 데이터 역직렬화하기
-     * @param json
-     * @return
-     */
-    VFResponseDefault deserializeVFResponseDefault(String json);
-    VFResponseDefault deserializeVFResponseDefault(JsonNode jsonNode);
 }

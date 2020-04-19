@@ -26,8 +26,12 @@ public abstract class AbsVFService extends BaseBean implements VFService {
     @Autowired
     private HttpGateService httpGateService;
 
-    @Override
-    public VFResponseDefault deserializeVFResponseDefault(String json) {
+    /**
+     * 동네예보 응답 데이터 역직렬화하기
+     * @param json
+     * @return
+     */
+    private VFResponseDefault deserializeVFResponseDefault(String json) {
         VFResponseDefault data = null;
         try {
             var om = new ObjectMapper();
@@ -39,8 +43,12 @@ public abstract class AbsVFService extends BaseBean implements VFService {
         return data;
     }
 
-    @Override
-    public VFResponseDefault deserializeVFResponseDefault(JsonNode jsonNode) {
+    /**
+     * 동네예보 응답 데이터 역직렬화하기
+     * @param jsonNode
+     * @return
+     */
+    private VFResponseDefault deserializeVFResponseDefault(JsonNode jsonNode) {
         var data = new VFResponseDefault();
         if (jsonNode.has("response")) {
             var response = new VFResponse();
@@ -92,6 +100,11 @@ public abstract class AbsVFService extends BaseBean implements VFService {
         return data;
     }
 
+    /**
+     * 동네예보 응답데이터 타입별 역직렬화하기
+     * @param jsonNode
+     * @return
+     */
     protected abstract VFItem deserializeVFItem(JsonNode jsonNode);
 
     @Override
@@ -99,9 +112,13 @@ public abstract class AbsVFService extends BaseBean implements VFService {
         var params = getParamsFromVFRequest(data);
         HttpResponse<String> response = httpGateService.getHttpService(HttpMethod.GET).request(getRequestUrl(), params);
         return deserializeVFResponseDefault(response.body());
-//        return new VFResponse().deserializeJson(response.body());
     }
 
+    /**
+     * 동네예보 요청데이터 파라미터 만들기
+     * @param vfRequest
+     * @return
+     */
     protected Map<Object, Object> getParamsFromVFRequest(VFRequest vfRequest) {
         var param = new HashMap<>();
         param.put("ServiceKey", vfRequest.getServiceKey());
@@ -113,5 +130,10 @@ public abstract class AbsVFService extends BaseBean implements VFService {
         return param;
     }
 
+    /**
+     * 동네예보 요청데이터 타입별 파라미터 만들기
+     * @param vfRequestParam
+     * @return
+     */
     protected abstract Map<Object, Object> getParamsFromVFRequestParam(VFRequestParam vfRequestParam);
 }

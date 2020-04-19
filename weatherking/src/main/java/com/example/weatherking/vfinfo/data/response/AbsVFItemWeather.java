@@ -10,7 +10,8 @@ public abstract class AbsVFItemWeather extends AbsVFItem {
     // 예보시각 (HHmm)
     protected String fcstTime;
     // 자료구분문자
-    protected String category;
+//    protected String category;
+    protected VFCategory category;
     // 예보값
     protected String fcstValue; // optional
     // 예보지점 x좌표
@@ -50,11 +51,20 @@ public abstract class AbsVFItemWeather extends AbsVFItem {
         this.fcstTime = fcstTime;
     }
 
-    public String getCategory() {
+//    public String getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(String category) {
+//        this.category = category;
+//    }
+
+
+    public VFCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(VFCategory category) {
         this.category = category;
     }
 

@@ -160,7 +160,7 @@ public class VFExampleTest {
     @Test
     public void testGetUltraSrcNcst() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService/getUltraSrtNcst"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=서비스키"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + serviceKey); /*Service Key*/
 //        urlBuilder.append("&" + URLEncoder.encode("ServiceKey",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("-", StandardCharsets.UTF_8)); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("1", StandardCharsets.UTF_8)); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows",StandardCharsets.UTF_8) + "=" + URLEncoder.encode("10", StandardCharsets.UTF_8)); /*한 페이지 결과 수*/
