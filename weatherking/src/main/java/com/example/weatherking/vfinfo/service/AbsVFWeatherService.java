@@ -1,5 +1,6 @@
 package com.example.weatherking.vfinfo.service;
 
+import com.example.weatherking.util.StringUtil;
 import com.example.weatherking.vfinfo.data.request.AbsVFRequestParamWeather;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
 import com.example.weatherking.vfinfo.data.response.AbsVFItemWeather;
@@ -27,7 +28,8 @@ public abstract class AbsVFWeatherService extends AbsVFService {
             data.setBaseTime(jsonNode.get("baseTime").toString());
         }
         if (jsonNode.has("category")) {
-            VFCategory vfCategory = getVFCategory(jsonNode.get("category").toString());
+            String category = StringUtil.trimDoubleQuotes(jsonNode.get("category").toString());
+            VFCategory vfCategory = getVFCategory(category);
             data.setCategory(vfCategory);
         }
         if (jsonNode.has("fcstDate")) {

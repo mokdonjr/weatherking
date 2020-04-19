@@ -73,12 +73,13 @@ public abstract class AbsVFService extends BaseBean implements VFService {
                 }
                 if (jsonNodeBody.has("items")) {
                     List<VFItem> list = new ArrayList<>();
-                    Iterator<JsonNode> iterator = jsonNodeBody.get("items").elements();
-                    while (iterator.hasNext()) {
-                        JsonNode jsonNodeInner = iterator.next();
-                        if (jsonNodeInner.has("item")) {
-                            jsonNodeInner = jsonNodeInner.get("item");
-                            var item = deserializeVFItem(jsonNodeInner);
+                    JsonNode jsonNodeItems = jsonNodeBody.get("items");
+                    if (jsonNodeItems.has("item")) {
+                        JsonNode jsonNodeItem = jsonNodeItems.get("item");
+                        Iterator<JsonNode> jsonNodeItemIterator = jsonNodeItem.elements();
+                        while (jsonNodeItemIterator.hasNext()) {
+                            JsonNode jsonNodePerItem = jsonNodeItemIterator.next();
+                            var item = deserializeVFItem(jsonNodePerItem);
                             list.add(item);
                         }
                     }
