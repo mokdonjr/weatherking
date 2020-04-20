@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.weatherking.comment.repository.CommentMapper">
+    <insert id="insComment" parameterType="com.example.weatherking.comment.data.Comment">
+        INSERT INTO COMMENT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comment.commentId != null">
+                comment_id,
+            </if>
+            <if test="comment.message != null">
+                message,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comment.commentId != null">
+                #{comment.commentId},
+            </if>
+            <if test="comment.message != null">
+                #{comment.message},
+            </if>
+        </trim>
+        <selectKey keyProperty="comment.commentId" resultType="long" order="AFTER">
+            <if test="comment.commentId != null">
+                SELECT #{comment.commentId} AS comment_id FROM DUAL
+            </if>
+            <if test="comment.commentId == null">
+                SELECT LAST_INSERT_ID()
+            </if>
+        </selectKey>
+    </insert>
+
+    <update id="updComment" parameterType="com.example.weatherking.comment.data.Comment">
+        UPDATE COMMENT
+        <set>
+            <if test="comment.commentId != null">
+                comment_id = #{comment.commentId},
+            </if>
+            <if test="comment.message != null">
+                message = #{comment.message},
+            </if>
+        </set>
+        WHERE
+            comment_id = #{comment.commentId}
+    </update>
+
+    <delete id="delComment">
+        DELETE FROM COMMENT
+        WHERE comment_id = #{commentId}
+    </delete>
+
+    <sql id="getComment">
+        SELECT *
+        FROM COMMENT
+        WHERE comment_id = #{commentId}
+    </sql>
+
+    <select id="getComment" resultType="com.example.weatherking.comment.data.Comment">
+        <include refid="getComment"></include>
+    </select>
+
+    <select id="getCommentForUpdate" resultType="com.example.weatherking.comment.data.Comment">
+        <include refid="getComment"></include>
+        FOR UPDATE
+    </select>
+
+    <select id="getCommentLastOne" resultType="com.example.weatherking.comment.data.Comment">
+        SELECT *
+        FROM COMMENT
+        ORDER BY comment_id DESC
+        LIMIT 1
+    </select>
+
+    <select id="getCommentList" resultType="com.example.weatherking.comment.data.Comment">
+        SELECT *
+        FROM COMMENT
+    </select>
+</mapper>
