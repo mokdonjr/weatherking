@@ -26,8 +26,8 @@ services:
     - 6379:6379
 
   spring_app:
-    hostname: spring_app
-    container_name: spring_app_container
+    hostname: ${DOCKER_CONTAINER_NAME}
+    container_name: ${DOCKER_CONTAINER_NAME}
     image: ${DOCKER_REPOSITORY}/${DOCKER_IMAGE_NAME}:latest
     restart: always
     privileged: true
