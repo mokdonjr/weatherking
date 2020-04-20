@@ -28,7 +28,7 @@ flyway-info:
   username: seungchan
   password: seungchan
   script: db/migration/mysql/weatherking
-  schema: weatherking
+  schema: WEATHERKING
 
 ---
 
@@ -48,4 +48,4 @@ flyway-info:
   username: seungchan
   password: seungchan
   script: db/migration/mysql/weatherking
-  schema: weatherking
+  schema: WEATHERKING

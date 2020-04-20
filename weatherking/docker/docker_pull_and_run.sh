@@ -20,5 +20,6 @@ sed -i "s/MYSQL_ROOT_PASSWORD=/MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}/g" .en
 #docker-compose -f docker-compose.yml pull spring_app
 
 docker rm -f "${DOCKER_CONTAINER_NAME}"
-docker-compose up -d
 docker system prune --force
+
+docker-compose up -d
