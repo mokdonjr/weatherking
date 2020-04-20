@@ -2,6 +2,8 @@ package com.example.weatherking.util;
 
 import com.example.weatherking.StaticBaseBean;
 
+import java.util.Map;
+
 public class StringUtil extends StaticBaseBean {
 
     /**
@@ -33,5 +35,29 @@ public class StringUtil extends StaticBaseBean {
         }
 
         return str.substring(beginIndex, endIndex);
+    }
+
+    /**
+     * 파라미터 만들기
+     * - 첫파라미터 구분자 (?)
+     * - 이후 파라미터 구분자 (&)
+     * @param param
+     * @return
+     */
+    public static String getParameterForm(Map<Object, Object> param) {
+        var sb = new StringBuilder();
+        if (param != null) {
+            for (Map.Entry<Object, Object> entry : param.entrySet()) {
+                if (sb.length() > 0) {
+                    sb.append("&");
+                }
+//                sb.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
+                sb.append(entry.getKey().toString());
+                sb.append("=");
+//                sb.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
+                sb.append(entry.getValue().toString());
+            }
+        }
+        return sb.toString();
     }
 }
