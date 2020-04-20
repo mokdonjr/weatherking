@@ -29,7 +29,7 @@ public class FlywayTaskService extends BaseBean {
                 .baselineOnMigrate(true)
                 .locations("classpath:db/migration/mysql/weatherking")
                 // TODO : DatabaseConfiguration
-                .dataSource("jdbc:mysql://127.0.0.1:3306?" + DatabaseConfiguration.getDefaultOption(), "seungchan", "seungchan")
+                .dataSource("jdbc:mysql://52.79.219.17:3306?" + DatabaseConfiguration.getDefaultOption(), "seungchan", "seungchan")
                 .schemas("weatherking")
                 .sqlMigrationPrefix("weatherking_v")
                 .sqlMigrationSeparator("__")
