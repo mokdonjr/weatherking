@@ -1,4 +1,4 @@
-package com.example.weatherking.database;
+package com.example.weatherking.database.config;
 
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.util.StringUtil;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 @DependsOn("flywayTaskService")
 @Configuration
-public class DatabaseConfiguration extends BaseBean {
+public class DatabaseConfig extends BaseBean {
 
     @DependsOn("flywayTaskService")
     @Bean
@@ -54,9 +54,9 @@ public class DatabaseConfiguration extends BaseBean {
         param.put("useCompression", false);
         param.put("autoCommit", false);
         // 모든 쿼리 출력
-        param.put("logger", "com.mysql.cj.log.StandardLogger");
+        /*param.put("logger", "com.mysql.cj.log.StandardLogger");
         param.put("profileSQL", true);
-        param.put("maxQuerySizeToLog", 4096);
+        param.put("maxQuerySizeToLog", 4096);*/
         return StringUtil.getParameterForm(param);
     }
 }

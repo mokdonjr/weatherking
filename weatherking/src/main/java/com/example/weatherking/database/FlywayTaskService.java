@@ -1,8 +1,11 @@
 package com.example.weatherking.database;
 
 import com.example.weatherking.BaseBean;
+import com.example.weatherking.database.config.DatabaseConfig;
+import com.example.weatherking.database.config.FlywayConfig;
 import com.example.weatherking.util.LogUtil;
 import org.flywaydb.core.Flyway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +16,9 @@ public class FlywayTaskService extends BaseBean {
 
     @Resource
     private FlywayTaskService flywayTaskService;
+
+    @Autowired
+    private FlywayConfig flywayConfig;
 
     @PostConstruct
     public void initFlywayTaskService() {
@@ -27,11 +33,12 @@ public class FlywayTaskService extends BaseBean {
                 .installedBy("baegseungchan") // TODO : profile
                 .validateOnMigrate(true)
                 .baselineOnMigrate(true)
-                .locations("classpath:db/migration/mysql/weatherking")
+                .locations("classpath:" + flywayConfig.getScript())
                 // TODO : DatabaseConfiguration
-                .dataSource("jdbc:mysql://52.79.219.17:3306?" + DatabaseConfiguration.getDefaultOption(), "seungchan", "seungchan")
-                .schemas("weatherking")
-                .sqlMigrationPrefix("weatherking_v")
+                .dataSource(flywayConfig.getUrl() + "?" + DatabaseConfig.getDefaultOption()
+                        , flywayConfig.getUsername(), flywayConfig.getPassword())
+                .schemas(flywayConfig.getSchema())
+                .sqlMigrationPrefix(flywayConfig.getSchema() + "_v")
                 .sqlMigrationSeparator("__")
                 .sqlMigrationSuffixes(".sql")
                 .load();

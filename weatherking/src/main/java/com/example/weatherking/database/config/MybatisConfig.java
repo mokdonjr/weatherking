@@ -1,4 +1,4 @@
-package com.example.weatherking.database;
+package com.example.weatherking.database.config;
 
 import com.example.weatherking.BaseBean;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-public class MybatisConfiguration extends BaseBean {
+public class MybatisConfig extends BaseBean {
 
     @Autowired
     private ApplicationContext applicationContext;

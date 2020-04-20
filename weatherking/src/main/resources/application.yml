@@ -1,20 +1,51 @@
 spring:
   application:
     name: 날씨왕 서버
+server:
+  port: 8081
+  servlet:
+    context-path: /weatherking
+
+---
+
+spring:
+  profiles:
+    - local
   datasource:
     hikari:
       maximum-pool-size: 4
-#      jdbc-url: jdbc:postgresql://localhost:5432/weather_king
-#      driver-class-name: org.postgresql.Driver
-#      username: postgres
-#      password: seungchan
+      #      jdbc-url: jdbc:postgresql://localhost:5432/weather_king
+      #      driver-class-name: org.postgresql.Driver
+      #      username: postgres
+      #      password: seungchan
       jdbc-url: jdbc:mysql://localhost:3306/WEATHERKING?characterEncoding=UTF-8&serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: seungchan
       password: seungchan
 
+flyway-info:
+  url: jdbc:mysql://localhost:3306
+  username: seungchan
+  password: seungchan
+  script: db/migration/mysql/weatherking
+  schema: weatherking
 
-server:
-  port: 8081
-  servlet:
-    context-path: /weatherking
+---
+
+spring:
+  profiles:
+    - dev
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+      jdbc-url: jdbc:mysql://52.79.219.17:3306/WEATHERKING?characterEncoding=UTF-8&serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: seungchan
+      password: seungchan
+
+flyway-info:
+  url: jdbc:mysql://52.79.219.17:3306
+  username: seungchan
+  password: seungchan
+  script: db/migration/mysql/weatherking
+  schema: weatherking
