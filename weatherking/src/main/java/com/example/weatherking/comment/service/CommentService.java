@@ -3,6 +3,7 @@ package com.example.weatherking.comment.service;
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.comment.data.Comment;
 import com.example.weatherking.comment.repository.CommentMapper;
+import com.example.weatherking.util.DateUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +21,7 @@ public class CommentService extends BaseBean {
     public Comment createComment(String message) {
         Comment comment = new Comment();
         comment.setMessage(message);
+        comment.setCreateAt(DateUtil.getCurrentDate());
         commentMapper.insComment(comment);
         return comment;
     }
@@ -29,7 +31,7 @@ public class CommentService extends BaseBean {
     }
 
     public List<Comment> getCommentList() {
-        return commentMapper.getCommentList();
+        return commentMapper.getCommentListNotDeleted();
     }
 
     public Comment getCommentForUpdate(long commentId) {
@@ -40,12 +42,23 @@ public class CommentService extends BaseBean {
         return commentMapper.getCommentLastOne();
     }
 
+    public void updComment(long commentId, String message) {
+        var comment = commentMapper.getCommentForUpdate(commentId);
+        comment.setMessage(message);
+        updComment(comment);
+    }
+
     public void updComment(Comment comment) {
+        comment.setIsUpdated(true);
+        comment.setUpdateAt(DateUtil.getCurrentDate());
         commentMapper.updComment(comment);
     }
 
     public void delComment(long commentId) {
-        commentMapper.delComment(commentId);
+        var comment = getCommentForUpdate(commentId);
+        comment.setIsDeleted(true);
+        comment.setDeleteAt(DateUtil.getCurrentDate());
+        commentMapper.updComment(comment);
     }
 
     public Comment deserializeComment(String json) {

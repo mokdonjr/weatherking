@@ -18,5 +18,7 @@ public interface CommentMapper {
     Comment getComment(@Param("commentId") long commentId);
     Comment getCommentForUpdate(@Param("commentId") long commentId);
     Comment getCommentLastOne();
+    Comment getCommentLastOneNotDeleted();
     List<Comment> getCommentList();
+    List<Comment> getCommentListNotDeleted();
 }

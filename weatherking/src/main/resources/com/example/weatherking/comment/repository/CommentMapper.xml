@@ -10,6 +10,21 @@
             <if test="comment.message != null">
                 message,
             </if>
+            <if test="comment.createAt != null">
+                create_at,
+            </if>
+            <if test="comment.isUpdated != null">
+                is_updated,
+            </if>
+            <if test="comment.updateAt != null">
+                update_at,
+            </if>
+            <if test="comment.isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="comment.deleteAt != null">
+                delete_at,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="comment.commentId != null">
@@ -17,6 +32,21 @@
             </if>
             <if test="comment.message != null">
                 #{comment.message},
+            </if>
+            <if test="comment.createAt != null">
+                #{comment.createAt},
+            </if>
+            <if test="comment.isUpdated != null">
+                #{comment.isUpdated},
+            </if>
+            <if test="comment.updateAt != null">
+                #{comment.updateAt},
+            </if>
+            <if test="comment.isDeleted != null">
+                #{comment.isDeleted},
+            </if>
+            <if test="comment.deleteAt != null">
+                #{comment.deleteAt},
             </if>
         </trim>
         <selectKey keyProperty="comment.commentId" resultType="long" order="AFTER">
@@ -37,6 +67,21 @@
             </if>
             <if test="comment.message != null">
                 message = #{comment.message},
+            </if>
+            <if test="comment.createAt != null">
+                create_at = #{comment.createAt},
+            </if>
+            <if test="comment.isUpdated != null">
+                is_updated = #{comment.isUpdated},
+            </if>
+            <if test="comment.updateAt != null">
+                update_at = #{comment.updateAt},
+            </if>
+            <if test="comment.isDeleted != null">
+                is_deleted = #{comment.isDeleted},
+            </if>
+            <if test="comment.deleteAt != null">
+                delete_at = #{comment.deleteAt},
             </if>
         </set>
         WHERE
@@ -73,5 +118,11 @@
     <select id="getCommentList" resultType="com.example.weatherking.comment.data.Comment">
         SELECT *
         FROM COMMENT
+    </select>
+
+    <select id="getCommentListNotDeleted" resultType="com.example.weatherking.comment.data.Comment">
+        SELECT *
+        FROM COMMENT
+        WHERE is_deleted = 0
     </select>
 </mapper>

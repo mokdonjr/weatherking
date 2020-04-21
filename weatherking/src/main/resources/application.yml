@@ -28,7 +28,8 @@ flyway-info:
   username: seungchan
   password: seungchan
   script: db/migration/mysql/weatherking
-  schema: WEATHERKING
+  # 로컬 윈도우라서..
+  schema: weatherking
 
 ---
 
