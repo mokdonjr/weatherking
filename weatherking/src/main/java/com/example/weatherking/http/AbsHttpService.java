@@ -50,6 +50,6 @@ public abstract class AbsHttpService extends BaseBean implements IHttpService {
      * @return
      */
     protected String requestParams(Map<Object, Object> param) {
-        return StringUtil.getParameterForm(param);
+        return StringUtil.getQueryString(param);
     }
 }

@@ -38,13 +38,13 @@ public class StringUtil extends StaticBaseBean {
     }
 
     /**
-     * 파라미터 만들기
+     * QueryString 만들기
      * - 첫파라미터 구분자 (?)
      * - 이후 파라미터 구분자 (&)
      * @param param
      * @return
      */
-    public static String getParameterForm(Map<Object, Object> param) {
+    public static String getQueryString(Map<Object, Object> param) {
         var sb = new StringBuilder();
         if (param != null) {
             for (Map.Entry<Object, Object> entry : param.entrySet()) {

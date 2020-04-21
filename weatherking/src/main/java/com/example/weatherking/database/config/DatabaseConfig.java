@@ -57,6 +57,6 @@ public class DatabaseConfig extends BaseBean {
         /*param.put("logger", "com.mysql.cj.log.StandardLogger");
         param.put("profileSQL", true);
         param.put("maxQuerySizeToLog", 4096);*/
-        return StringUtil.getParameterForm(param);
+        return StringUtil.getQueryString(param);
     }
 }
