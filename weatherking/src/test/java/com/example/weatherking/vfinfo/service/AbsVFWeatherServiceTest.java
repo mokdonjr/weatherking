@@ -16,8 +16,8 @@ public abstract class AbsVFWeatherServiceTest extends AbsVFServiceTest {
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
         VFRequestParamWeatherNormal vfRequestParamDataNormal = new VFRequestParamWeatherNormal();
-        vfRequestParamDataNormal.setBase_date(DateUtil.getDateStringFormatyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamDataNormal.setBase_time(DateUtil.getDateStringFormatHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamDataNormal.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamDataNormal.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequestParamDataNormal.setNx(1);
         vfRequestParamDataNormal.setNy(1);
         vfRequest.setVfRequestParam(vfRequestParamDataNormal);

@@ -1,5 +1,6 @@
 package com.example.weatherking.comment.data;
 
+import com.example.weatherking.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -8,17 +9,17 @@ public class Comment {
     // PK
     private Long commentId;
     private String message;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DateUtil.DEFAULT_DATE_FORMAT)
     private Date createAt;
 
     // 댓글 수정 기록
     private Boolean isUpdated;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DateUtil.DEFAULT_DATE_FORMAT)
     private Date updateAt;
 
     // 댓글 삭제 기록
     private Boolean isDeleted;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DateUtil.DEFAULT_DATE_FORMAT)
     private Date deleteAt;
 
     public Long getCommentId() {

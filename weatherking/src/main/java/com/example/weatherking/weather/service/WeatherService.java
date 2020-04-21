@@ -33,8 +33,8 @@ public class WeatherService extends BaseBean {
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
         VFRequestParamWeatherNormal vfRequestParamDataNormal = new VFRequestParamWeatherNormal();
-        vfRequestParamDataNormal.setBase_date(DateUtil.getDateStringFormatyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamDataNormal.setBase_time(DateUtil.getDateStringFormatHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamDataNormal.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamDataNormal.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequestParamDataNormal.setNx(x);
         vfRequestParamDataNormal.setNy(y);
         vfRequest.setVfRequestParam(vfRequestParamDataNormal);
@@ -58,8 +58,8 @@ public class WeatherService extends BaseBean {
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
         VFRequestParamWeatherUltraSrtFcst vfRequestParamWeatherUltraSrtFcst = new VFRequestParamWeatherUltraSrtFcst();
-        vfRequestParamWeatherUltraSrtFcst.setBase_date(DateUtil.getDateStringFormatyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtFcst.setBase_time(DateUtil.getDateStringFormatHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamWeatherUltraSrtFcst.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamWeatherUltraSrtFcst.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequestParamWeatherUltraSrtFcst.setNx(x);
         vfRequestParamWeatherUltraSrtFcst.setNy(y);
         vfRequest.setVfRequestParam(vfRequestParamWeatherUltraSrtFcst);
@@ -83,8 +83,8 @@ public class WeatherService extends BaseBean {
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
         VFRequestParamWeatherUltraSrtNcst vfRequestParamWeatherUltraSrtNcst = new VFRequestParamWeatherUltraSrtNcst();
-        vfRequestParamWeatherUltraSrtNcst.setBase_date(DateUtil.getDateStringFormatyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtNcst.setBase_time(DateUtil.getDateStringFormatHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamWeatherUltraSrtNcst.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamWeatherUltraSrtNcst.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequestParamWeatherUltraSrtNcst.setNx(x);
         vfRequestParamWeatherUltraSrtNcst.setNy(y);
         vfRequest.setVfRequestParam(vfRequestParamWeatherUltraSrtNcst);

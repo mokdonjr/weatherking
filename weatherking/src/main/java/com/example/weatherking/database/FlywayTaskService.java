@@ -38,7 +38,7 @@ public class FlywayTaskService extends BaseBean {
                 .dataSource(flywayConfig.getUrl() + "?" + DatabaseConfig.getDefaultOption()
                         , flywayConfig.getUsername(), flywayConfig.getPassword())
                 .schemas(flywayConfig.getSchema())
-                .sqlMigrationPrefix(flywayConfig.getSchema() + "_v")
+                .sqlMigrationPrefix(flywayConfig.getSchema().toLowerCase() + "_v")
                 .sqlMigrationSeparator("__")
                 .sqlMigrationSuffixes(".sql")
                 .load();

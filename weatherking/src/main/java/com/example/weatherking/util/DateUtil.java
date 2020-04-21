@@ -2,11 +2,17 @@ package com.example.weatherking.util;
 
 import com.example.weatherking.StaticBaseBean;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil extends StaticBaseBean {
+
+    /**
+     * 디폴트 시간 형식
+     */
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     private static Date testDate = null;
 
@@ -18,36 +24,64 @@ public class DateUtil extends StaticBaseBean {
         }
     }
 
-    public static String getDateStringFormat(Date date, String format) {
+    /**
+     * 문자열 -> Date 변환
+     * @param date
+     * @param format
+     * @return
+     */
+    public static Date stringToDate(String date, String format) {
+        if (date == null)
+            return null;
+        Date parsed = null;
+        try {
+            parsed = new SimpleDateFormat(format).parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return parsed;
+    }
+
+    public static Date stringToDate(String date) {
+        return stringToDate(date, DateUtil.DEFAULT_DATE_FORMAT);
+    }
+
+    /**
+     * Date -> 문자열 변환
+     * @param date
+     * @param format
+     * @return
+     */
+    public static String dateToString(Date date, String format) {
         return new SimpleDateFormat(format).format(date);
     }
 
-    public static String getDateStringFormat(String format) {
-        return getDateStringFormat(getCurrentDate(), format);
+    public static String dateToString(String format) {
+        return dateToString(getCurrentDate(), format);
     }
 
-    public static String getDateStringFormatyyyyMMddHHmm(Date date) {
-        return getDateStringFormat(date, "yyyyMMddHHmm");
+    public static String dateToStringyyyyMMddHHmm(Date date) {
+        return dateToString(date, "yyyyMMddHHmm");
     }
 
-    public static String getDateStringFormatyyyyMMddHHmm() {
-        return getDateStringFormatyyyyMMddHHmm(getCurrentDate());
+    public static String dateToStringyyyyMMddHHmm() {
+        return dateToStringyyyyMMddHHmm(getCurrentDate());
     }
 
-    public static String getDateStringFormatyyyyMMdd(Date date) {
-        return getDateStringFormat(date, "yyyyMMdd");
+    public static String dateToStringyyyyMMdd(Date date) {
+        return dateToString(date, "yyyyMMdd");
     }
 
-    public static String getDateStringFormatyyyyMMdd() {
-        return getDateStringFormatyyyyMMdd(getCurrentDate());
+    public static String dateToStringyyyyMMdd() {
+        return dateToStringyyyyMMdd(getCurrentDate());
     }
 
-    public static String getDateStringFormatHHmm(Date date) {
-        return getDateStringFormat(date, "HHmm");
+    public static String dateToStringHHmm(Date date) {
+        return dateToString(date, "HHmm");
     }
 
-    public static String getDateStringFormatHHmm() {
-        return getDateStringFormatHHmm(getCurrentDate());
+    public static String dateToStringHHmm() {
+        return dateToStringHHmm(getCurrentDate());
     }
 
     public static Date getDateAfterMillis(Date date, int millis) {

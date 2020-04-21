@@ -24,7 +24,7 @@ public class VFVersionServiceTest extends AbsVFServiceTest {
         vfRequest.setDataType(VFDataType.JSON);
         VFRequestParamVersion vfRequestParamVersion = new VFRequestParamVersion();
         vfRequestParamVersion.setFtype(VFFileType.ODAM);
-        vfRequestParamVersion.setBasedatetime(DateUtil.getDateStringFormatyyyyMMddHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamVersion.setBasedatetime(DateUtil.dateToStringyyyyMMddHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequest.setVfRequestParam(vfRequestParamVersion);
         return vfRequest;
     }
