@@ -1,6 +1,6 @@
 package com.example.weatherking.vfinfo.service;
 
-import com.example.weatherking.util.StringUtil;
+import com.example.weatherking.util.JsonUtil;
 import com.example.weatherking.vfinfo.data.VFFileType;
 import com.example.weatherking.vfinfo.data.VFType;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
@@ -33,13 +33,8 @@ public class VFVersionService extends AbsVFService {
     @Override
     protected VFItem deserializeVFItem(JsonNode jsonNode) {
         var data = new VFItemVersion();
-        if (jsonNode.has("filetype")) {
-            String fileType = StringUtil.trimDoubleQuotes(jsonNode.get("filetype").toString());
-            data.setFiletype(VFFileType.valueOf(fileType));
-        }
-        if (jsonNode.has("version")) {
-            data.setVersion(jsonNode.get("version").toString());
-        }
+        data.setFiletype(VFFileType.valueOf(JsonUtil.getJsonString(jsonNode, "filetype")));
+        data.setVersion(JsonUtil.getJsonString(jsonNode, "version"));
         return data;
     }
 

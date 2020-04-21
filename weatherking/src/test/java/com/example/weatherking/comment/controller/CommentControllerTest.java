@@ -3,7 +3,7 @@ package com.example.weatherking.comment.controller;
 import com.example.weatherking.BaseBeanTest;
 import com.example.weatherking.comment.data.Comment;
 import com.example.weatherking.comment.service.CommentService;
-import com.example.weatherking.util.StringUtil;
+import com.example.weatherking.util.JsonUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class CommentControllerTest extends BaseBeanTest {
@@ -49,7 +50,10 @@ public class CommentControllerTest extends BaseBeanTest {
         Assertions.assertNotNull(result);
 
         // DB 검증
-        Assertions.assertEquals(commentId + 1, commentService.getCommentLastOne().getCommentId());
+        var created = commentService.getCommentLastOne();
+        logger.info("[TEST_REQUEST] {}", JsonUtil.prettyIndentJson(created));
+        Assertions.assertEquals(commentId + 1, created.getCommentId());
+        Assertions.assertNotNull(created.getCreateAt());
     }
 
     @Test
@@ -63,10 +67,10 @@ public class CommentControllerTest extends BaseBeanTest {
                 .andReturn();
         Assertions.assertNotNull(result);
 
-        Comment commentDeserialized = commentService.deserializeComment(result.getResponse().getContentAsString());
-        Assertions.assertNotNull(commentDeserialized);
-        Assertions.assertEquals(testMessage, StringUtil.trimDoubleQuotes(commentDeserialized.getMessage())); // TODO : 헐... RESULT 뭔가로 감싸야하나...
-        logger.info("[TEST_REQUESET] {}", commentDeserialized.toString());
+        Comment deserialized = commentService.deserializeComment(result.getResponse().getContentAsString());
+        Assertions.assertNotNull(deserialized);
+        logger.info("[TEST_REQUEST] {}", JsonUtil.prettyIndentJson(deserialized));
+        Assertions.assertEquals(testMessage, deserialized.getMessage());
     }
 
     @Test
@@ -82,10 +86,15 @@ public class CommentControllerTest extends BaseBeanTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
         Assertions.assertNotNull(result);
+        logger.info("[TEST_REQUEST] {}", result.getResponse().getContentAsString());
 
-        Comment commentDeserialized = commentService.deserializeComment(result.getRequest().getContentAsString());
-        Assertions.assertNotNull(commentDeserialized);
-        logger.info("[TEST_REQUESET] {}", commentDeserialized.toString());
+        List<Comment> deserialized = commentService.deserializeCommentList(result.getResponse().getContentAsString());
+        Assertions.assertNotNull(deserialized);
+        logger.info("[TEST_REQUEST] {}", JsonUtil.prettyIndentJson(deserialized));
+
+        // DB 검증
+        Assertions.assertTrue(commentService.getCommentList().stream().map(Comment::getCommentId).collect(Collectors.toList())
+                .containsAll(expectedCommentIdList));
     }
 
     @Test
@@ -99,11 +108,15 @@ public class CommentControllerTest extends BaseBeanTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
         Assertions.assertNotNull(result);
+        logger.info("[TEST_REQUEST] {}", result.getResponse().getContentAsString());
 
-        Comment commentDeserialized = commentService.deserializeComment(result.getResponse().getContentAsString());
-        Assertions.assertNotNull(commentDeserialized);
-        Assertions.assertEquals(expectedMessage, StringUtil.trimDoubleQuotes(commentDeserialized.getMessage())); // TODO : 헐... RESULT 뭔가로 감싸야하나...
-        logger.info("[TEST_REQUESET] {}", commentDeserialized.toString());
+        // DB 검증
+        Comment deserialized = commentService.deserializeComment(result.getResponse().getContentAsString());
+        Assertions.assertNotNull(deserialized);
+        logger.info("[TEST_REQUEST] {}", JsonUtil.prettyIndentJson(deserialized));
+        Assertions.assertEquals(expectedMessage, deserialized.getMessage());
+        Assertions.assertTrue(deserialized.getIsUpdated());
+        Assertions.assertNotNull(deserialized.getUpdateAt());
     }
 
     @Test
@@ -116,9 +129,12 @@ public class CommentControllerTest extends BaseBeanTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
         Assertions.assertNotNull(result);
-        logger.info("[TEST_REQUESET] {}", result.getResponse().getContentAsString());
+        logger.info("[TEST_REQUEST] {}", result.getResponse().getContentAsString());
 
         // DB 검증
-        Assertions.assertNull(commentService.getCommentForUpdate(commentId));
+        var deleted = commentService.getCommentForUpdate(commentId);
+        logger.info("[TEST_REQUEST] {}", JsonUtil.prettyIndentJson(deleted));
+        Assertions.assertTrue(deleted.getIsDeleted());
+        Assertions.assertNotNull(deleted.getDeleteAt());
     }
 }

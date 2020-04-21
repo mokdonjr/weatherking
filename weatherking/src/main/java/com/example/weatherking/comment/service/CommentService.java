@@ -4,12 +4,15 @@ import com.example.weatherking.BaseBean;
 import com.example.weatherking.comment.data.Comment;
 import com.example.weatherking.comment.repository.CommentMapper;
 import com.example.weatherking.util.DateUtil;
+import com.example.weatherking.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -61,20 +64,52 @@ public class CommentService extends BaseBean {
         commentMapper.updComment(comment);
     }
 
-    public Comment deserializeComment(String json) {
+    public Comment deserializeComment(JsonNode jsonNode) {
         Comment data = new Comment();
+        data.setCommentId(JsonUtil.getJsonLong(jsonNode, "commentId"));
+        data.setMessage(JsonUtil.getJsonString(jsonNode, "message"));
+        data.setCreateAt(JsonUtil.getJsonDate(jsonNode, "createAt"));
+        data.setIsUpdated(JsonUtil.getJsonBoolean(jsonNode, "isUpdated"));
+        data.setUpdateAt(JsonUtil.getJsonDate(jsonNode, "updateAt"));
+        data.setIsDeleted(JsonUtil.getJsonBoolean(jsonNode, "isDeleted"));
+        data.setDeleteAt(JsonUtil.getJsonDate(jsonNode, "deleteAt"));
+        return data;
+    }
+
+    public Comment deserializeComment(String json) {
+        Comment data = null;
         try {
             var om = new ObjectMapper();
             JsonNode jsonNode = om.readTree(json);
-            if (jsonNode.has("commentId")) {
-                data.setCommentId(jsonNode.get("commentId").asLong());
-            }
-            if (jsonNode.has("message")) {
-                data.setMessage(jsonNode.get("message").toString());
-            }
+            data = deserializeComment(jsonNode);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public List<Comment> deserializeCommentList(JsonNode jsonNode) {
+        List<Comment> list = new ArrayList<>();
+        Iterator<JsonNode> jsonNodeIterator = jsonNode.elements();
+        while (jsonNodeIterator.hasNext()) {
+            JsonNode jsonNodePerItem = jsonNodeIterator.next();
+            var item = deserializeComment(jsonNodePerItem);
+            if (item != null) {
+                list.add(item);
+            }
+        }
+        return list;
+    }
+
+    public List<Comment> deserializeCommentList(String json) {
+        List<Comment> list = null;
+        try {
+            var om = new ObjectMapper();
+            JsonNode jsonNode = om.readTree(json);
+            list = deserializeCommentList(jsonNode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

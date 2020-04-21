@@ -2,7 +2,7 @@ package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.http.HttpGateService;
-import com.example.weatherking.util.StringUtil;
+import com.example.weatherking.util.JsonUtil;
 import com.example.weatherking.vfinfo.data.VFDataType;
 import com.example.weatherking.vfinfo.data.request.VFRequest;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
@@ -56,21 +56,14 @@ public abstract class AbsVFService extends BaseBean implements VFService {
             if (jsonNodeResponse.has("header")) {
                 var jsonNodeHeader = jsonNodeResponse.get("header");
                 var header = new VFHeader();
-                if (jsonNodeHeader.has("resultCode")) {
-                    header.setResultCode(jsonNodeHeader.get("resultCode").toString());
-                }
-                if (jsonNodeHeader.has("resultMsg")) {
-                    header.setResultMsg(jsonNodeHeader.get("resultMsg").toString());
-                }
+                header.setResultCode(JsonUtil.getJsonString(jsonNodeHeader, "resultCode"));
+                header.setResultMsg(JsonUtil.getJsonString(jsonNodeHeader, "resultMsg"));
                 response.setHeader(header);
             }
             if (jsonNodeResponse.has("body")) {
                 var body = new VFBody();
                 var jsonNodeBody = jsonNodeResponse.get("body");
-                if (jsonNodeBody.has("dataType")) {
-                    String dataType = jsonNodeBody.get("dataType").toString();
-                    body.setDataType(VFDataType.valueOf(StringUtil.trimDoubleQuotes(dataType)));
-                }
+                body.setDataType(VFDataType.valueOf(JsonUtil.getJsonString(jsonNodeBody, "dataType")));
                 if (jsonNodeBody.has("items")) {
                     List<VFItem> list = new ArrayList<>();
                     JsonNode jsonNodeItems = jsonNodeBody.get("items");
@@ -85,15 +78,9 @@ public abstract class AbsVFService extends BaseBean implements VFService {
                     }
                     body.setItems(list);
                 }
-                if (jsonNodeBody.has("pageNo")) {
-                    body.setPageNo(jsonNodeBody.get("pageNo").asInt());
-                }
-                if (jsonNodeBody.has("numOfRows")) {
-                    body.setNumOfRows(jsonNodeBody.get("numOfRows").asInt());
-                }
-                if (jsonNodeBody.has("totalCount")) {
-                    body.setTotalCount(jsonNodeBody.get("totalCount").asInt());
-                }
+                body.setPageNo(JsonUtil.getJsonInt(jsonNodeBody, "pageNo"));
+                body.setNumOfRows(JsonUtil.getJsonInt(jsonNodeBody, "numOfRows"));
+                body.setTotalCount(JsonUtil.getJsonInt(jsonNodeBody, "totalCount"));
                 response.setBody(body);
             }
             data.setResponse(response);

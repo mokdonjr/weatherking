@@ -1,6 +1,6 @@
 package com.example.weatherking.vfinfo.service;
 
-import com.example.weatherking.util.StringUtil;
+import com.example.weatherking.util.JsonUtil;
 import com.example.weatherking.vfinfo.data.request.AbsVFRequestParamWeather;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
 import com.example.weatherking.vfinfo.data.response.AbsVFItemWeather;
@@ -21,32 +21,14 @@ public abstract class AbsVFWeatherService extends AbsVFService {
     @Override
     protected VFItem deserializeVFItem(JsonNode jsonNode) {
         var data = (AbsVFItemWeather) getVFItemInstance();
-        if (jsonNode.has("baseDate")) {
-            data.setBaseDate(jsonNode.get("baseDate").toString());
-        }
-        if (jsonNode.has("baseTime")) {
-            data.setBaseTime(jsonNode.get("baseTime").toString());
-        }
-        if (jsonNode.has("category")) {
-            String category = StringUtil.trimDoubleQuotes(jsonNode.get("category").toString());
-            VFCategory vfCategory = getVFCategory(category);
-            data.setCategory(vfCategory);
-        }
-        if (jsonNode.has("fcstDate")) {
-            data.setFcstDate(jsonNode.get("fcstDate").toString());
-        }
-        if (jsonNode.has("fcstTime")) {
-            data.setFcstTime(jsonNode.get("fcstTime").toString());
-        }
-        if (jsonNode.has("fcstValue")) {
-            data.setFcstTime(jsonNode.get("fcstValue").toString());
-        }
-        if (jsonNode.has("nx")) {
-            data.setNx(jsonNode.get("nx").asInt());
-        }
-        if (jsonNode.has("ny")) {
-            data.setNy(jsonNode.get("ny").asInt());
-        }
+        data.setBaseDate(JsonUtil.getJsonString(jsonNode, "baseDate"));
+        data.setBaseTime(JsonUtil.getJsonString(jsonNode, "baseTime"));
+        data.setCategory(getVFCategory(JsonUtil.getJsonString(jsonNode, "category")));
+        data.setFcstDate(JsonUtil.getJsonString(jsonNode, "fcstDate"));
+        data.setFcstTime(JsonUtil.getJsonString(jsonNode, "fcstTime"));
+        data.setFcstValue(JsonUtil.getJsonString(jsonNode, "fcstValue"));
+        data.setNx(JsonUtil.getJsonInt(jsonNode, "nx"));
+        data.setNy(JsonUtil.getJsonInt(jsonNode, "ny"));
         return data;
     }
 
