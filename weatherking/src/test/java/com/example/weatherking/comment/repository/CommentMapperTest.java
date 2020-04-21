@@ -2,6 +2,7 @@ package com.example.weatherking.comment.repository;
 
 import com.example.weatherking.BaseBeanTest;
 import com.example.weatherking.comment.data.Comment;
+import com.example.weatherking.util.DateUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class CommentMapperTest extends BaseBeanTest {
         String testMessage = "TEST_MESSAGE_!@#";
         Comment comment = new Comment();
         comment.setMessage(testMessage);
+        comment.setCreateAt(DateUtil.getCurrentDate());
 
         // create
         commentMapper.insComment(comment);
@@ -30,6 +32,10 @@ public class CommentMapperTest extends BaseBeanTest {
         String updatedMessage = "MMM";
         commentSelectedForUpdate = commentMapper.getCommentForUpdate(commentId);
         commentSelectedForUpdate.setMessage(updatedMessage);
+        commentSelectedForUpdate.setIsUpdated(true);
+        commentSelectedForUpdate.setUpdateAt(DateUtil.getCurrentDate());
+        commentSelectedForUpdate.setIsDeleted(true);
+        commentSelectedForUpdate.setDeleteAt(DateUtil.getCurrentDate());
         commentMapper.updComment(commentSelectedForUpdate);
 
         // select

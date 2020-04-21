@@ -31,7 +31,7 @@ public class CommentController extends BaseBean {
         if (comment == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(comment, HttpStatus.CREATED);
+        return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
     @GetMapping("/")
@@ -61,7 +61,7 @@ public class CommentController extends BaseBean {
         }
         comment.setMessage(message);
         commentService.updComment(comment);
-        return new ResponseEntity<>(comment, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
     @DeleteMapping("/{commentId}")
@@ -72,6 +72,6 @@ public class CommentController extends BaseBean {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         commentService.delComment(commentId);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
