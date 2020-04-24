@@ -24,7 +24,7 @@ public class CommentController extends BaseBean {
     @Autowired
     private CommentService commentService;
 
-    @PostMapping("/")
+    @PostMapping(value = "/", produces = "application/json; charset=utf8")
     @ApiOperation(value = "댓글 작성")
     public ResponseEntity<Comment> createComment(@RequestParam("message") String message) {
         var comment = commentService.createComment(message);
@@ -34,7 +34,7 @@ public class CommentController extends BaseBean {
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json; charset=utf8")
     @ApiOperation(value = "댓글 리스트 조회")
     public ResponseEntity<List<Comment>> getCommentList() throws JSONException {
         // TODO : 페이징
@@ -45,14 +45,14 @@ public class CommentController extends BaseBean {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/{commentId}")
+    @GetMapping(value = "/{commentId}", produces = "application/json; charset=utf8")
     @ApiOperation(value = "특정 댓글 조회")
     public ResponseEntity<Comment> getComment(@PathVariable(value = "commentId") long commentId) throws JSONException {
         var comment = commentService.getComment(commentId);
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @PutMapping("/{commentId}")
+    @PutMapping(value = "/{commentId}", produces = "application/json; charset=utf8")
     @ApiOperation(value = "댓글 수정")
     public ResponseEntity<Comment> updComment(@PathVariable(value = "commentId") long commentId, @RequestParam("message") String message) {
         var comment = commentService.getCommentForUpdate(commentId);
@@ -64,7 +64,7 @@ public class CommentController extends BaseBean {
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping(value = "/{commentId}", produces = "application/json; charset=utf8")
     @ApiOperation(value = "댓글 삭제")
     public ResponseEntity<?> delComment(@PathVariable(value = "commentId") long commentId) {
         var comment = commentService.getCommentForUpdate(commentId);
