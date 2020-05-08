@@ -124,4 +124,6 @@ public abstract class AbsVFService extends BaseBean implements VFService {
      * @return
      */
     protected abstract Map<Object, Object> getParamsFromVFRequestParam(VFRequestParam vfRequestParam);
+
+    protected abstract VFCategory getVFCategory(String category);
 }

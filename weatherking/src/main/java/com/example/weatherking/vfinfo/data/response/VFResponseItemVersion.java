@@ -3,7 +3,7 @@ package com.example.weatherking.vfinfo.data.response;
 import com.example.weatherking.vfinfo.data.VFFileType;
 import com.example.weatherking.vfinfo.data.VFType;
 
-public class VFItemVersion extends AbsVFItem {
+public class VFResponseItemVersion extends AbsVFItem {
 
     @Override
     public VFType getVFType() {

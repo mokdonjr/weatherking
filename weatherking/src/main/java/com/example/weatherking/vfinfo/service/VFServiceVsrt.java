@@ -1,12 +1,12 @@
 package com.example.weatherking.vfinfo.service;
 
 import com.example.weatherking.util.JsonUtil;
-import com.example.weatherking.vfinfo.data.request.AbsVFRequestParamWeather;
+import com.example.weatherking.vfinfo.data.VFType;
 import com.example.weatherking.vfinfo.data.request.VFRequestParam;
-import com.example.weatherking.vfinfo.data.response.AbsVFItemWeather;
-import com.example.weatherking.vfinfo.data.response.VFCategory;
-import com.example.weatherking.vfinfo.data.response.VFItem;
+import com.example.weatherking.vfinfo.data.request.VFRequestParamVsrt;
+import com.example.weatherking.vfinfo.data.response.*;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.stereotype.Service;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -14,13 +14,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 기상청 날씨정보 서비스 템플릿
+ * 기상청 초단기예보조회 서비스
  */
-public abstract class AbsVFWeatherService extends AbsVFService {
+@Service
+public class VFServiceVsrt extends AbsVFService {
+    @Override
+    public VFType getVFType() {
+        return VFType.VF_VSRT;
+    }
+
+    @Override
+    public VFItem getVFResponseItemInstance() {
+        return new VFResponseItemVsrt();
+    }
+
+    @Override
+    protected VFCategory getVFCategory(String category) {
+        return VFCategoryVsrt.valueOf(category);
+    }
 
     @Override
     protected VFItem deserializeVFItem(JsonNode jsonNode) {
-        var data = (AbsVFItemWeather) getVFItemInstance();
+        var data = (VFResponseItemVsrt) getVFResponseItemInstance();
         data.setBaseDate(JsonUtil.getJsonString(jsonNode, "baseDate"));
         data.setBaseTime(JsonUtil.getJsonString(jsonNode, "baseTime"));
         data.setCategory(getVFCategory(JsonUtil.getJsonString(jsonNode, "category")));
@@ -32,11 +47,9 @@ public abstract class AbsVFWeatherService extends AbsVFService {
         return data;
     }
 
-    protected abstract VFCategory getVFCategory(String category);
-
     @Override
     protected Map<Object, Object> getParamsFromVFRequestParam(VFRequestParam vfRequestParam) {
-        AbsVFRequestParamWeather data = (AbsVFRequestParamWeather) vfRequestParam;
+        VFRequestParamVsrt data = (VFRequestParamVsrt) vfRequestParam;
         var param = new HashMap<>();
         param.put("base_date", URLEncoder.encode(data.getBase_date(), StandardCharsets.UTF_8));
         param.put("base_time", URLEncoder.encode(data.getBase_time(), StandardCharsets.UTF_8));

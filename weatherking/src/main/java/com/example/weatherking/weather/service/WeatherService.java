@@ -6,9 +6,9 @@ import com.example.weatherking.vfinfo.config.VFConfig;
 import com.example.weatherking.vfinfo.data.VFDataType;
 import com.example.weatherking.vfinfo.data.VFType;
 import com.example.weatherking.vfinfo.data.request.VFRequest;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamWeatherNormal;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamWeatherUltraSrtFcst;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamWeatherUltraSrtNcst;
+import com.example.weatherking.vfinfo.data.request.VFRequestParamShrt;
+import com.example.weatherking.vfinfo.data.request.VFRequestParamVsrt;
+import com.example.weatherking.vfinfo.data.request.VFRequestParamOdam;
 import com.example.weatherking.vfinfo.data.response.VFResponseDefault;
 import com.example.weatherking.vfinfo.service.VFGateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +32,13 @@ public class WeatherService extends BaseBean {
         vfRequest.setPageNo(1);
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
-        VFRequestParamWeatherNormal vfRequestParamDataNormal = new VFRequestParamWeatherNormal();
+        VFRequestParamShrt vfRequestParamDataNormal = new VFRequestParamShrt();
         vfRequestParamDataNormal.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
         vfRequestParamDataNormal.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         vfRequestParamDataNormal.setNx(x);
         vfRequestParamDataNormal.setNy(y);
         vfRequest.setVfRequestParam(vfRequestParamDataNormal);
-        var vfService = vfGateService.getVFService(VFType.VF_NORMAL);
+        var vfService = vfGateService.getVFService(VFType.VF_SHRT);
 
         // TODO : 클라가 원하는 데이터로 가공.
         // 일단.. VFResponseDefault로 응답. 클라와 협의
@@ -57,13 +57,13 @@ public class WeatherService extends BaseBean {
         vfRequest.setPageNo(1);
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
-        VFRequestParamWeatherUltraSrtFcst vfRequestParamWeatherUltraSrtFcst = new VFRequestParamWeatherUltraSrtFcst();
-        vfRequestParamWeatherUltraSrtFcst.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtFcst.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtFcst.setNx(x);
-        vfRequestParamWeatherUltraSrtFcst.setNy(y);
-        vfRequest.setVfRequestParam(vfRequestParamWeatherUltraSrtFcst);
-        var vfService = vfGateService.getVFService(VFType.VF_ULTRA_SRT_FCST);
+        VFRequestParamVsrt vfRequestParamVsrt = new VFRequestParamVsrt();
+        vfRequestParamVsrt.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamVsrt.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamVsrt.setNx(x);
+        vfRequestParamVsrt.setNy(y);
+        vfRequest.setVfRequestParam(vfRequestParamVsrt);
+        var vfService = vfGateService.getVFService(VFType.VF_VSRT);
 
         // TODO : 클라가 원하는 데이터로 가공.
         // 일단.. VFResponseDefault로 응답. 클라와 협의
@@ -82,13 +82,13 @@ public class WeatherService extends BaseBean {
         vfRequest.setPageNo(1);
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
-        VFRequestParamWeatherUltraSrtNcst vfRequestParamWeatherUltraSrtNcst = new VFRequestParamWeatherUltraSrtNcst();
-        vfRequestParamWeatherUltraSrtNcst.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtNcst.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamWeatherUltraSrtNcst.setNx(x);
-        vfRequestParamWeatherUltraSrtNcst.setNy(y);
-        vfRequest.setVfRequestParam(vfRequestParamWeatherUltraSrtNcst);
-        var vfService = vfGateService.getVFService(VFType.VF_ULTRA_SRT_NCST);
+        VFRequestParamOdam vfRequestParamOdam = new VFRequestParamOdam();
+        vfRequestParamOdam.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamOdam.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamOdam.setNx(x);
+        vfRequestParamOdam.setNy(y);
+        vfRequest.setVfRequestParam(vfRequestParamOdam);
+        var vfService = vfGateService.getVFService(VFType.VF_ODAM);
 
         // TODO : 클라가 원하는 데이터로 가공.
         // 일단.. VFResponseDefault로 응답. 클라와 협의

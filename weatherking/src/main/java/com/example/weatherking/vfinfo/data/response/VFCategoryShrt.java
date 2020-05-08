@@ -3,7 +3,7 @@ package com.example.weatherking.vfinfo.data.response;
 /**
  * 기상청 동네예보조회 응답 카테고리
  */
-public enum VFCategoryWeatherNormal implements VFCategory {
+public enum VFCategoryShrt implements VFCategory {
     POP("강수확률", "%", 8),
     PTY("강수형태", "코드값", 4),
     R06("6시간 강수량", "범주 (1 mm)", 8),
@@ -27,7 +27,7 @@ public enum VFCategoryWeatherNormal implements VFCategory {
     // 압축 bit 수
     private int bitNum;
 
-    VFCategoryWeatherNormal(String name, String unit, int bitNum) {
+    VFCategoryShrt(String name, String unit, int bitNum) {
         this.name = name;
         this.unit = unit;
         this.bitNum = bitNum;

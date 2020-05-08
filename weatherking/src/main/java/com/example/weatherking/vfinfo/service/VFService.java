@@ -28,7 +28,7 @@ public interface VFService {
      * 동네예보 응답 데이터 타입 인스턴스로 가져오기
      * @return
      */
-    VFItem getVFItemInstance();
+    VFItem getVFResponseItemInstance();
 
     /**
      * 동네예보 요청하기

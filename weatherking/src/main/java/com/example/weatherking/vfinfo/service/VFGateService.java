@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 public class VFGateService extends BaseBean {
 
     @Autowired
-    private VFVersionService vfVersionService;
+    private VFServiceVersion vfServiceVersion;
     @Autowired
-    private VFWeatherNormalService vfWeatherService;
+    private VFServiceShrt vfWeatherService;
     @Autowired
-    private VFWeatherUltraSrtFcstService vfWeatherUltraSrtFcstService;
+    private VFServiceVsrt vfServiceVsrt;
     @Autowired
-    private VFWeatherUltraSrtNcstService vfWeatherUltraSrtNcstService;
+    private VFServiceOdam vfServiceOdam;
 
     public VFService getVFService(VFType vfType) {
         switch (vfType) {
-            case VF_VERSION: return vfVersionService;
-            case VF_NORMAL: return vfWeatherService;
-            case VF_ULTRA_SRT_FCST: return vfWeatherUltraSrtFcstService;
-            case VF_ULTRA_SRT_NCST: return vfWeatherUltraSrtNcstService;
+            case VF_VERSION: return vfServiceVersion;
+            case VF_SHRT: return vfWeatherService;
+            case VF_VSRT: return vfServiceVsrt;
+            case VF_ODAM: return vfServiceOdam;
             default: break;
         }
         return null;
