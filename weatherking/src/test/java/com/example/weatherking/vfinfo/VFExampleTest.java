@@ -1,8 +1,8 @@
 package com.example.weatherking.vfinfo;
 
 import com.example.weatherking.util.DateUtil;
-import com.example.weatherking.vfinfo.config.VFConfig;
-import com.example.weatherking.vfinfo.data.VFDataType;
+import com.example.weatherking.vfinfo.common.config.VFConfig;
+import com.example.weatherking.vfinfo.common.data.VFDataType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

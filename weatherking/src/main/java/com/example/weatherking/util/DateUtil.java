@@ -84,14 +84,14 @@ public class DateUtil extends StaticBaseBean {
         return dateToStringHHmm(getCurrentDate());
     }
 
-    public static Date getDateAfterMillis(Date date, int millis) {
+    public static Date getDateAfterMillis(Date date, long millis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MILLISECOND, millis);
+        calendar.add(Calendar.MILLISECOND, (int) millis);
         return calendar.getTime();
     }
 
-    public static Date getDateAfterMillis(int millis) {
+    public static Date getDateAfterMillis(long millis) {
         return getDateAfterMillis(getCurrentDate(), millis);
     }
 

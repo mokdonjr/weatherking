@@ -2,15 +2,15 @@ package com.example.weatherking.weather.service;
 
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.util.DateUtil;
-import com.example.weatherking.vfinfo.config.VFConfig;
-import com.example.weatherking.vfinfo.data.VFDataType;
-import com.example.weatherking.vfinfo.data.VFType;
-import com.example.weatherking.vfinfo.data.request.VFRequest;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamShrt;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamVsrt;
-import com.example.weatherking.vfinfo.data.request.VFRequestParamOdam;
-import com.example.weatherking.vfinfo.data.response.VFResponseDefault;
-import com.example.weatherking.vfinfo.service.VFGateService;
+import com.example.weatherking.vfinfo.common.config.VFConfig;
+import com.example.weatherking.vfinfo.common.data.VFDataType;
+import com.example.weatherking.vfinfo.common.data.VFType;
+import com.example.weatherking.vfinfo.common.data.request.VFRequest;
+import com.example.weatherking.vfinfo.shrt.VFRequestParamShrt;
+import com.example.weatherking.vfinfo.vsrt.VFRequestParamVsrt;
+import com.example.weatherking.vfinfo.odam.VFRequestParamOdam;
+import com.example.weatherking.vfinfo.common.data.response.VFResponseDefault;
+import com.example.weatherking.vfinfo.common.service.VFGateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

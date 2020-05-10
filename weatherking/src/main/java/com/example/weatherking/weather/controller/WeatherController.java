@@ -1,7 +1,7 @@
 package com.example.weatherking.weather.controller;
 
 import com.example.weatherking.BaseBean;
-import com.example.weatherking.vfinfo.data.response.VFResponseDefault;
+import com.example.weatherking.vfinfo.common.data.response.VFResponseDefault;
 import com.example.weatherking.weather.service.WeatherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
