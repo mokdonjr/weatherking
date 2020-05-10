@@ -6,14 +6,19 @@ import com.example.weatherking.vfinfo.common.config.VFConfig;
 import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.VFType;
 import com.example.weatherking.vfinfo.common.data.request.VFRequest;
-import com.example.weatherking.vfinfo.shrt.VFRequestParamShrt;
-import com.example.weatherking.vfinfo.vsrt.VFRequestParamVsrt;
-import com.example.weatherking.vfinfo.odam.VFRequestParamOdam;
 import com.example.weatherking.vfinfo.common.data.response.VFResponseDefault;
 import com.example.weatherking.vfinfo.common.service.VFGateService;
+import com.example.weatherking.vfinfo.odam.VFRequestParamOdam;
+import com.example.weatherking.vfinfo.shrt.VFRequestParamShrt;
+import com.example.weatherking.vfinfo.vsrt.VFRequestParamVsrt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * TODO : 클라가 원하는 응답으로 바꿔야함. 폐기!!
+ * TODO : 여기 설계를 잘해야함!!
+ */
+@Deprecated
 @Service
 public class WeatherService extends BaseBean {
 
@@ -32,12 +37,12 @@ public class WeatherService extends BaseBean {
         vfRequest.setPageNo(1);
         vfRequest.setNumOfRows(10);
         vfRequest.setDataType(VFDataType.JSON);
-        VFRequestParamShrt vfRequestParamDataNormal = new VFRequestParamShrt();
-        vfRequestParamDataNormal.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamDataNormal.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamDataNormal.setNx(x);
-        vfRequestParamDataNormal.setNy(y);
-        vfRequest.setVfRequestParam(vfRequestParamDataNormal);
+        VFRequestParamShrt vfRequestParamShrt = new VFRequestParamShrt();
+        vfRequestParamShrt.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamShrt.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamShrt.setNx(x);
+        vfRequestParamShrt.setNy(y);
+        vfRequest.setVfRequestParam(vfRequestParamShrt);
         var vfService = vfGateService.getVFService(VFType.VF_SHRT);
 
         // TODO : 클라가 원하는 데이터로 가공.
