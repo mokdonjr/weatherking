@@ -106,23 +106,26 @@ public abstract class AbsVFService extends BaseBean implements VFService {
         int page = VFConfig.PAGE_NO_DEFAULT_VALUE;
         VFResponseDefault responseFirst = request(getVFRequestDefault(page, VFConfig.NUM_OF_ROWS_DEFAULT_VALUE));
         responseList.add(responseFirst);
+
+        // 여분 체크
         if (responseFirst != null) {
-
-            // 전체 데이터 개수 (값복사)
             VFBody body = responseFirst.getResponse().getBody();
-            int totalCount = body.getTotalCount();
-            int num = body.getNumOfRows();
-            int leftCounter = totalCount - num;
+            if (body != null) {
+                // 전체 데이터 개수 (값복사)
+                int totalCount = body.getTotalCount();
+                int num = body.getNumOfRows();
+                int leftCounter = totalCount - num;
 
-            // 다음 페이지 요청
-            while (leftCounter > 0) {
-                var responseNext = request(getVFRequestDefault(++page, num));
-                if (responseNext == null)
-                    break;
+                // 다음 페이지 요청
+                while (leftCounter > 0) {
+                    var responseNext = request(getVFRequestDefault(++page, num));
+                    if (responseNext == null)
+                        break;
 
-                // 다음 페이지 수집
-                responseList.add(responseNext);
-                leftCounter -= responseNext.getResponse().getBody().getNumOfRows();
+                    // 다음 페이지 수집
+                    responseList.add(responseNext);
+                    leftCounter -= responseNext.getResponse().getBody().getNumOfRows();
+                }
             }
         }
         return responseList;

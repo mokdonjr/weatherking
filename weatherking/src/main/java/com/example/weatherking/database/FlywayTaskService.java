@@ -42,7 +42,7 @@ public class FlywayTaskService extends BaseBean {
                 .sqlMigrationSeparator("__")
                 .sqlMigrationSuffixes(".sql")
                 .load();
-        flyway.repair();
+//        flyway.repair();
         flyway.migrate();
     }
 }

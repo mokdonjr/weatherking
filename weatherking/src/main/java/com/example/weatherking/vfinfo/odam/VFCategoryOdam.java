@@ -4,6 +4,7 @@ import com.example.weatherking.vfinfo.common.data.response.VFCategory;
 
 /**
  * 기상청 초단기실황조회 응답 카테고리
+ * 'T1H', 'RN1', 'UUU', 'VVV', 'REH', 'PTY', 'VEC', 'WSD'
  */
 public enum VFCategoryOdam implements VFCategory {
     T1H("기온", "℃", 10),

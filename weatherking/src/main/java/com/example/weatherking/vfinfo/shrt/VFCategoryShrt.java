@@ -4,6 +4,7 @@ import com.example.weatherking.vfinfo.common.data.response.VFCategory;
 
 /**
  * 기상청 동네예보조회 응답 카테고리
+ * 'POP', 'PTY', 'R06', 'REH', 'S06', 'SKY', 'T3H', 'TMN', 'TMX', 'UUU', 'VVV', 'WAV', 'VEC', 'WSD'
  */
 public enum VFCategoryShrt implements VFCategory {
     POP("강수확률", "%", 8),

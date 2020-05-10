@@ -23,7 +23,9 @@ public class MybatisConfig extends BaseBean {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setTypeAliasesPackage("com.example.weatherking");
 //        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:com/example/weatherking/comment/repository/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(
+                applicationContext.getResources("classpath*:com/example/weatherking/*/repository/*.xml")
+        );
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBean.getObject();
         if (sqlSessionFactory == null) {
             throw new Exception();

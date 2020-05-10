@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.weatherking.vfinfo.repository.VFInfoMapper">
+
+    <sql id="getVFDataOdam">
+        SELECT *
+        FROM VF_ODAM
+        WHERE notice_at = #{noticeAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </sql>
+
+    <select id="getVFDataOdam" resultType="com.example.weatherking.vfinfo.odam.VFDataOdam">
+        <include refid="getVFDataOdam"></include>
+    </select>
+
+    <select id="getVFDataOdamForUpdate" resultType="com.example.weatherking.vfinfo.odam.VFDataOdam">
+        <include refid="getVFDataOdam"></include>
+        FOR UPDATE
+    </select>
+
+    <sql id="insVFDataOdam">
+        INSERT INTO VF_ODAM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="vfDataOdam.noticeAt != null">
+                notice_at,
+            </if>
+            <if test="vfDataOdam.nx != null">
+                nx,
+            </if>
+            <if test="vfDataOdam.ny != null">
+                ny,
+            </if>
+            <if test="vfDataOdam.category != null">
+                category,
+            </if>
+            <if test="vfDataOdam.value != null">
+                value,
+            </if>
+            <if test="vfDataOdam.createAt != null">
+                create_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="vfDataOdam.noticeAt != null">
+                #{vfDataOdam.noticeAt},
+            </if>
+            <if test="vfDataOdam.nx != null">
+                #{vfDataOdam.nx},
+            </if>
+            <if test="vfDataOdam.ny != null">
+                #{vfDataOdam.ny},
+            </if>
+            <if test="vfDataOdam.category != null">
+                #{vfDataOdam.category},
+            </if>
+            <if test="vfDataOdam.value != null">
+                #{vfDataOdam.value},
+            </if>
+            <if test="vfDataOdam.createAt != null">
+                #{vfDataOdam.createAt},
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insVFDataOdam" parameterType="com.example.weatherking.vfinfo.odam.VFDataOdam">
+        <include refid="insVFDataOdam"></include>
+    </insert>
+
+    <insert id="insupdVFDataOdam" parameterType="com.example.weatherking.vfinfo.odam.VFDataOdam">
+        <include refid="insVFDataOdam"></include>
+        ON DUPLICATE KEY UPDATE
+        value = VALUES(value),
+        create_at = VALUES(create_at)
+    </insert>
+
+    <update id="updVFDataOdam" parameterType="com.example.weatherking.vfinfo.odam.VFDataOdam">
+        UPDATE VF_ODAM
+        <set>
+            <if test="vfDataOdam.noticeAt != null">
+                notice_at = #{vfDataOdam.noticeAt},
+            </if>
+            <if test="vfDataOdam.nx != null">
+                nx = #{vfDataOdam.nx},
+            </if>
+            <if test="vfDataOdam.ny != null">
+                ny = #{vfDataOdam.ny},
+            </if>
+            <if test="vfDataOdam.category != null">
+                category = #{vfDataOdam.category},
+            </if>
+            <if test="vfDataOdam.value != null">
+                value = #{vfDataOdam.value},
+            </if>
+            <if test="vfDataOdam.createAt != null">
+                create_at = #{vfDataOdam.createAt},
+            </if>
+        </set>
+        WHERE notice_at = #{vfDataOdam.noticeAt}
+        AND nx = #{vfDataOdam.nx}
+        AND ny = #{vfDataOdam.ny}
+        AND category = #{vfDataOdam.category}
+    </update>
+
+    <delete id="delVFDataOdam">
+        DELETE FROM VF_ODAM
+        WHERE notice_at = #{noticeAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </delete>
+
+    <sql id="getVFDataShrt">
+        SELECT *
+        FROM VF_SHRT
+        WHERE notice_at = #{noticeAt}
+        AND forecast_at = #{forecastAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </sql>
+
+    <select id="getVFDataShrt" resultType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
+        <include refid="getVFDataShrt"></include>
+    </select>
+
+    <select id="getVFDataShrtForUpdate" resultType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
+        <include refid="getVFDataShrt"></include>
+        FOR UPDATE
+    </select>
+
+    <sql id="insVFDataShrt">
+        INSERT INTO VF_SHRT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="vfDataShrt.noticeAt != null">
+                notice_at,
+            </if>
+            <if test="vfDataShrt.forecastAt != null">
+                forecast_at,
+            </if>
+            <if test="vfDataShrt.nx != null">
+                nx,
+            </if>
+            <if test="vfDataShrt.ny != null">
+                ny,
+            </if>
+            <if test="vfDataShrt.category != null">
+                category,
+            </if>
+            <if test="vfDataShrt.value != null">
+                value,
+            </if>
+            <if test="vfDataShrt.createAt != null">
+                create_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="vfDataShrt.noticeAt != null">
+                #{vfDataShrt.noticeAt},
+            </if>
+            <if test="vfDataShrt.forecastAt != null">
+                #{vfDataShrt.forecastAt},
+            </if>
+            <if test="vfDataShrt.nx != null">
+                #{vfDataShrt.nx},
+            </if>
+            <if test="vfDataShrt.ny != null">
+                #{vfDataShrt.ny},
+            </if>
+            <if test="vfDataShrt.category != null">
+                #{vfDataShrt.category},
+            </if>
+            <if test="vfDataShrt.value != null">
+                #{vfDataShrt.value},
+            </if>
+            <if test="vfDataShrt.createAt != null">
+                #{vfDataShrt.createAt},
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insVFDataShrt" parameterType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
+        <include refid="insVFDataShrt"></include>
+    </insert>
+
+    <insert id="insupdVFDataShrt" parameterType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
+        <include refid="insVFDataShrt"></include>
+        ON DUPLICATE KEY UPDATE
+        value = VALUES(value),
+        create_at = VALUES(create_at)
+    </insert>
+
+    <update id="updVFDataShrt" parameterType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
+        UPDATE VF_SHRT
+        <set>
+            <if test="vfDataShrt.noticeAt != null">
+                notice_at = #{vfDataShrt.noticeAt},
+            </if>
+            <if test="vfDataShrt.forecastAt != null">
+                forecast_at = #{vfDataShrt.forecastAt},
+            </if>
+            <if test="vfDataShrt.nx != null">
+                nx = #{vfDataShrt.nx},
+            </if>
+            <if test="vfDataShrt.ny != null">
+                ny = #{vfDataShrt.ny},
+            </if>
+            <if test="vfDataShrt.category != null">
+                category = #{vfDataShrt.category},
+            </if>
+            <if test="vfDataShrt.value != null">
+                value = #{vfDataShrt.value},
+            </if>
+            <if test="vfDataShrt.createAt != null">
+                create_at = #{vfDataShrt.createAt},
+            </if>
+        </set>
+        WHERE notice_at = #{vfDataShrt.noticeAt}
+        AND forecast_at = #{vfDataShrt.forecastAt}
+        AND nx = #{vfDataShrt.nx}
+        AND ny = #{vfDataShrt.ny}
+        AND category = #{vfDataShrt.category}
+    </update>
+
+    <delete id="delVFDataShrt">
+        DELETE FROM VF_SHRT
+        WHERE notice_at = #{noticeAt}
+        AND forecast_at = #{forecastAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </delete>
+
+    <sql id="getVFDataVsrt">
+        SELECT *
+        FROM VF_VSRT
+        WHERE notice_at = #{noticeAt}
+        AND forecast_at = #{forecastAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </sql>
+
+    <select id="getVFDataVsrt" resultType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
+        <include refid="getVFDataVsrt"></include>
+    </select>
+
+    <select id="getVFDataVsrtForUpdate" resultType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
+        <include refid="getVFDataVsrt"></include>
+        FOR UPDATE
+    </select>
+
+    <sql id="insVFDataVsrt">
+        INSERT INTO VF_VSRT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="vfDataVsrt.noticeAt != null">
+                notice_at,
+            </if>
+            <if test="vfDataVsrt.forecastAt != null">
+                forecast_at,
+            </if>
+            <if test="vfDataVsrt.nx != null">
+                nx,
+            </if>
+            <if test="vfDataVsrt.ny != null">
+                ny,
+            </if>
+            <if test="vfDataVsrt.category != null">
+                category,
+            </if>
+            <if test="vfDataVsrt.value != null">
+                value,
+            </if>
+            <if test="vfDataVsrt.createAt != null">
+                create_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="vfDataVsrt.noticeAt != null">
+                #{vfDataVsrt.noticeAt},
+            </if>
+            <if test="vfDataVsrt.forecastAt != null">
+                #{vfDataVsrt.forecastAt},
+            </if>
+            <if test="vfDataVsrt.nx != null">
+                #{vfDataVsrt.nx},
+            </if>
+            <if test="vfDataVsrt.ny != null">
+                #{vfDataVsrt.ny},
+            </if>
+            <if test="vfDataVsrt.category != null">
+                #{vfDataVsrt.category},
+            </if>
+            <if test="vfDataVsrt.value != null">
+                #{vfDataVsrt.value},
+            </if>
+            <if test="vfDataVsrt.createAt != null">
+                #{vfDataVsrt.createAt},
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insVFDataVsrt" parameterType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
+        <include refid="insVFDataVsrt"></include>
+    </insert>
+
+    <insert id="insupdVFDataVsrt" parameterType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
+        <include refid="insVFDataVsrt"></include>
+        ON DUPLICATE KEY UPDATE
+        value = VALUES(value),
+        create_at = VALUES(create_at)
+    </insert>
+
+    <update id="updVFDataVsrt" parameterType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
+        UPDATE VF_VSRT
+        <set>
+            <if test="vfDataVsrt.noticeAt != null">
+                notice_at = #{vfDataVsrt.noticeAt},
+            </if>
+            <if test="vfDataVsrt.forecastAt != null">
+                forecast_at = #{vfDataVsrt.forecastAt},
+            </if>
+            <if test="vfDataVsrt.nx != null">
+                nx = #{vfDataVsrt.nx},
+            </if>
+            <if test="vfDataVsrt.ny != null">
+                ny = #{vfDataVsrt.ny},
+            </if>
+            <if test="vfDataVsrt.category != null">
+                category = #{vfDataVsrt.category},
+            </if>
+            <if test="vfDataVsrt.value != null">
+                value = #{vfDataVsrt.value},
+            </if>
+            <if test="vfDataVsrt.createAt != null">
+                create_at = #{vfDataVsrt.createAt},
+            </if>
+        </set>
+        WHERE notice_at = #{vfDataVsrt.noticeAt}
+        AND forecast_at = #{vfDataVsrt.forecastAt}
+        AND nx = #{vfDataVsrt.nx}
+        AND ny = #{vfDataVsrt.ny}
+        AND category = #{vfDataVsrt.category}
+    </update>
+
+    <delete id="delVFDataVsrt">
+        DELETE FROM VF_VSRT
+        WHERE notice_at = #{noticeAt}
+        AND forecast_at = #{forecastAt}
+        AND nx = #{nx}
+        AND ny = #{ny}
+        AND category = #{category}
+    </delete>
+</mapper>
