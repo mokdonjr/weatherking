@@ -37,15 +37,15 @@ public class VFServiceShrt extends AbsVFService {
     public VFRequest getVFRequestDefault() {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(1);
-        vfRequest.setNumOfRows(10);
-        vfRequest.setDataType(VFDataType.JSON);
+        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
+        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamShrt vfRequestParamShrt = new VFRequestParamShrt();
         vfRequestParamShrt.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
         vfRequestParamShrt.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
         // TODO : 파라미터를 어떻게 넘길것인지?
-        vfRequestParamShrt.setNx(1);
-        vfRequestParamShrt.setNy(1);
+        vfRequestParamShrt.setNx(VFConfig.NX_DEFAULT_VALUE);
+        vfRequestParamShrt.setNy(VFConfig.NY_DEFAULT_VALUE);
         vfRequest.setVfRequestParam(vfRequestParamShrt);
         return vfRequest;
     }

@@ -37,14 +37,14 @@ public class VFServiceOdam extends AbsVFService {
     public VFRequest getVFRequestDefault() {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(1);
-        vfRequest.setNumOfRows(10);
-        vfRequest.setDataType(VFDataType.JSON);
+        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
+        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamOdam vfRequestParamOdam = new VFRequestParamOdam();
         vfRequestParamOdam.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
         vfRequestParamOdam.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamOdam.setNx(1);
-        vfRequestParamOdam.setNy(1);
+        vfRequestParamOdam.setNx(VFConfig.NX_DEFAULT_VALUE);
+        vfRequestParamOdam.setNy(VFConfig.NY_DEFAULT_VALUE);
         vfRequest.setVfRequestParam(vfRequestParamOdam);
         return vfRequest;
     }

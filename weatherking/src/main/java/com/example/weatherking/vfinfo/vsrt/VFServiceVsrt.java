@@ -3,7 +3,6 @@ package com.example.weatherking.vfinfo.vsrt;
 import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.util.JsonUtil;
 import com.example.weatherking.vfinfo.common.config.VFConfig;
-import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.VFType;
 import com.example.weatherking.vfinfo.common.data.request.VFRequest;
 import com.example.weatherking.vfinfo.common.data.request.VFRequestParam;
@@ -37,14 +36,14 @@ public class VFServiceVsrt extends AbsVFService {
     public VFRequest getVFRequestDefault() {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(1);
-        vfRequest.setNumOfRows(10);
-        vfRequest.setDataType(VFDataType.JSON);
+        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
+        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamVsrt vfRequestParamVsrt = new VFRequestParamVsrt();
         vfRequestParamVsrt.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
         vfRequestParamVsrt.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
-        vfRequestParamVsrt.setNx(1);
-        vfRequestParamVsrt.setNy(1);
+        vfRequestParamVsrt.setNx(VFConfig.NX_DEFAULT_VALUE);
+        vfRequestParamVsrt.setNy(VFConfig.NY_DEFAULT_VALUE);
         vfRequest.setVfRequestParam(vfRequestParamVsrt);
         return vfRequest;
     }

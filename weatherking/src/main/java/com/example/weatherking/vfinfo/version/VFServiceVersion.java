@@ -3,7 +3,6 @@ package com.example.weatherking.vfinfo.version;
 import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.util.JsonUtil;
 import com.example.weatherking.vfinfo.common.config.VFConfig;
-import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.VFFileType;
 import com.example.weatherking.vfinfo.common.data.VFType;
 import com.example.weatherking.vfinfo.common.data.request.VFRequest;
@@ -38,9 +37,9 @@ public class VFServiceVersion extends AbsVFService {
     public VFRequest getVFRequestDefault() {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(1);
-        vfRequest.setNumOfRows(10);
-        vfRequest.setDataType(VFDataType.JSON);
+        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
+        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamVersion vfRequestParamVersion = new VFRequestParamVersion();
         // TODO : 파라미터를 어떻게 넘길것인지
         vfRequestParamVersion.setFtype(VFFileType.ODAM);
