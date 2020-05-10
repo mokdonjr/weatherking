@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 동네예보 api 수집 스케쥴 서비스
  */
@@ -48,8 +50,11 @@ public class VFScheduleService extends BaseBean {
     public void scheduleAll() throws JSONException {
         for (VFType vfType : VFType.values()) {
             logger.info("[{}] 스케쥴!", vfType);
-            VFResponseDefault vfResponse = vfGateService.getVFService(vfType).requestDefault();
-            logger.info(JsonUtil.prettyIndentJson(vfResponse));
+            List<VFResponseDefault> vfResponseList = vfGateService.getVFService(vfType).requestDefault();
+            logger.info(JsonUtil.prettyIndentJson(vfResponseList));
+
+            // DB 저장
+
         }
     }
 }

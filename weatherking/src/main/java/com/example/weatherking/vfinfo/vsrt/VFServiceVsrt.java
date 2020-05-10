@@ -33,11 +33,11 @@ public class VFServiceVsrt extends AbsVFService {
     }
 
     @Override
-    public VFRequest getVFRequestDefault() {
+    public VFRequest getVFRequestDefault(int page, int num) {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
-        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setPageNo(page);
+        vfRequest.setNumOfRows(num);
         vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamVsrt vfRequestParamVsrt = new VFRequestParamVsrt();
         vfRequestParamVsrt.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));

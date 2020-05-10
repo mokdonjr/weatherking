@@ -5,6 +5,8 @@ import com.example.weatherking.vfinfo.common.data.request.VFRequest;
 import com.example.weatherking.vfinfo.common.data.response.VFItem;
 import com.example.weatherking.vfinfo.common.data.response.VFResponseDefault;
 
+import java.util.List;
+
 /**
  * 동네예보 서비스
  */
@@ -34,13 +36,13 @@ public interface VFService {
      * 동네예보 요청 파라미터 가져오기
      * @return
      */
-    VFRequest getVFRequestDefault();
+    VFRequest getVFRequestDefault(int page, int num);
 
     /**
      * 동네예보 요청하기
      * @return
      */
-    VFResponseDefault requestDefault();
+    List<VFResponseDefault> requestDefault();
 
     /**
      * 동네예보 파라미터로 요청하기

@@ -3,6 +3,7 @@ package com.example.weatherking.vfinfo.common.service;
 import com.example.weatherking.BaseBean;
 import com.example.weatherking.http.HttpGateService;
 import com.example.weatherking.util.JsonUtil;
+import com.example.weatherking.vfinfo.common.config.VFConfig;
 import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.request.VFRequest;
 import com.example.weatherking.vfinfo.common.data.request.VFRequestParam;
@@ -96,8 +97,35 @@ public abstract class AbsVFService extends BaseBean implements VFService {
     protected abstract VFItem deserializeVFItem(JsonNode jsonNode);
 
     @Override
-    public VFResponseDefault requestDefault() {
-        return request(getVFRequestDefault());
+    public List<VFResponseDefault> requestDefault() {
+
+        // 페이지 전체 수집
+        List<VFResponseDefault> responseList = new ArrayList<>();
+
+        // 첫 페이지 응답
+        int page = VFConfig.PAGE_NO_DEFAULT_VALUE;
+        VFResponseDefault responseFirst = request(getVFRequestDefault(page, VFConfig.NUM_OF_ROWS_DEFAULT_VALUE));
+        responseList.add(responseFirst);
+        if (responseFirst != null) {
+
+            // 전체 데이터 개수 (값복사)
+            VFBody body = responseFirst.getResponse().getBody();
+            int totalCount = body.getTotalCount();
+            int num = body.getNumOfRows();
+            int leftCounter = totalCount - num;
+
+            // 다음 페이지 요청
+            while (leftCounter > 0) {
+                var responseNext = request(getVFRequestDefault(++page, num));
+                if (responseNext == null)
+                    break;
+
+                // 다음 페이지 수집
+                responseList.add(responseNext);
+                leftCounter -= responseNext.getResponse().getBody().getNumOfRows();
+            }
+        }
+        return responseList;
     }
 
     @Override

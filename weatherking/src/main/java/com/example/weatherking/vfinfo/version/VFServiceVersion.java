@@ -34,11 +34,11 @@ public class VFServiceVersion extends AbsVFService {
     }
 
     @Override
-    public VFRequest getVFRequestDefault() {
+    public VFRequest getVFRequestDefault(int page, int num) {
         VFRequest vfRequest = new VFRequest();
         vfRequest.setServiceKey(VFConfig.getServiceKey());
-        vfRequest.setPageNo(VFConfig.PAGE_NO_DEFAULT_VALUE);
-        vfRequest.setNumOfRows(VFConfig.NUM_OF_ROWS_DEFAULT_VALUE);
+        vfRequest.setPageNo(page);
+        vfRequest.setNumOfRows(num);
         vfRequest.setDataType(VFConfig.DATA_TYPE_DEFAULT_VALUE);
         VFRequestParamVersion vfRequestParamVersion = new VFRequestParamVersion();
         // TODO : 파라미터를 어떻게 넘길것인지

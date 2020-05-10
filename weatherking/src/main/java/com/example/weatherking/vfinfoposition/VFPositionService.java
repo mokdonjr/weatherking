@@ -104,7 +104,7 @@ public class VFPositionService extends BaseBean {
 
 
 
-    class LatXLngY
+    static class LatXLngY
     {
         public double lat;
         public double lng;
