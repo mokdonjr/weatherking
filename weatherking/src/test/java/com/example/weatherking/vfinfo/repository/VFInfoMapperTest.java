@@ -22,7 +22,7 @@ public class VFInfoMapperTest extends BaseBeanTest {
 
         // insert
         VFDataOdam vfDataOdam = new VFDataOdam();
-        vfDataOdam.setNoticeAt(DateUtil.getCurrentDate());
+        vfDataOdam.setNoticeTime(DateUtil.getCurrentDate().getTime());
         vfDataOdam.setNx(1);
         vfDataOdam.setNy(1);
         vfDataOdam.setCategory(VFCategoryOdam.PTY);
@@ -31,7 +31,7 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.insVFDataOdam(vfDataOdam);
 
         // select for update
-        VFDataOdam selectForUpdate = vfInfoMapper.getVFDataOdamForUpdate(vfDataOdam.getNoticeAt(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
+        VFDataOdam selectForUpdate = vfInfoMapper.getVFDataOdamForUpdate(vfDataOdam.getNoticeTime(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
         Assertions.assertNotNull(selectForUpdate);
 
         // update
@@ -40,12 +40,12 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.updVFDataOdam(selectForUpdate);
 
         // select
-        VFDataOdam select = vfInfoMapper.getVFDataOdam(vfDataOdam.getNoticeAt(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
+        VFDataOdam select = vfInfoMapper.getVFDataOdam(vfDataOdam.getNoticeTime(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
         Assertions.assertEquals(expectedValue, select.getValue());
 
         // delete
-        vfInfoMapper.delVFDataOdam(vfDataOdam.getNoticeAt(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
-        Assertions.assertNull(vfInfoMapper.getVFDataOdam(vfDataOdam.getNoticeAt(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory()));
+        vfInfoMapper.delVFDataOdam(vfDataOdam.getNoticeTime(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory());
+        Assertions.assertNull(vfInfoMapper.getVFDataOdam(vfDataOdam.getNoticeTime(), vfDataOdam.getNx(), vfDataOdam.getNy(), vfDataOdam.getCategory()));
     }
 
     @Test
@@ -53,8 +53,8 @@ public class VFInfoMapperTest extends BaseBeanTest {
 
         // insert
         VFDataVsrt vfDataVsrt = new VFDataVsrt();
-        vfDataVsrt.setNoticeAt(DateUtil.getCurrentDate());
-        vfDataVsrt.setForecastAt(DateUtil.getCurrentDate());
+        vfDataVsrt.setNoticeTime(DateUtil.getCurrentDate().getTime());
+        vfDataVsrt.setForecastTime(DateUtil.getCurrentDate().getTime());
         vfDataVsrt.setNx(1);
         vfDataVsrt.setNy(1);
         vfDataVsrt.setCategory(VFCategoryVsrt.PTY);
@@ -63,7 +63,7 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.insVFDataVsrt(vfDataVsrt);
 
         // select for update
-        VFDataVsrt selectForUpdate = vfInfoMapper.getVFDataVsrtForUpdate(vfDataVsrt.getNoticeAt(), vfDataVsrt.getForecastAt(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
+        VFDataVsrt selectForUpdate = vfInfoMapper.getVFDataVsrtForUpdate(vfDataVsrt.getNoticeTime(), vfDataVsrt.getForecastTime(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
         Assertions.assertNotNull(selectForUpdate);
 
         // update
@@ -72,12 +72,12 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.updVFDataVsrt(selectForUpdate);
 
         // select
-        VFDataVsrt select = vfInfoMapper.getVFDataVsrt(vfDataVsrt.getNoticeAt(), vfDataVsrt.getForecastAt(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
+        VFDataVsrt select = vfInfoMapper.getVFDataVsrt(vfDataVsrt.getNoticeTime(), vfDataVsrt.getForecastTime(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
         Assertions.assertEquals(expectedValue, select.getValue());
 
         // delete
-        vfInfoMapper.delVFDataVsrt(vfDataVsrt.getNoticeAt(), vfDataVsrt.getForecastAt(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
-        Assertions.assertNull(vfInfoMapper.getVFDataVsrt(vfDataVsrt.getNoticeAt(), vfDataVsrt.getForecastAt(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory()));
+        vfInfoMapper.delVFDataVsrt(vfDataVsrt.getNoticeTime(), vfDataVsrt.getForecastTime(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory());
+        Assertions.assertNull(vfInfoMapper.getVFDataVsrt(vfDataVsrt.getNoticeTime(), vfDataVsrt.getForecastTime(), vfDataVsrt.getNx(), vfDataVsrt.getNy(), vfDataVsrt.getCategory()));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class VFInfoMapperTest extends BaseBeanTest {
 
         // insert
         VFDataShrt vfDataShrt = new VFDataShrt();
-        vfDataShrt.setNoticeAt(DateUtil.getCurrentDate());
-        vfDataShrt.setForecastAt(DateUtil.getCurrentDate());
+        vfDataShrt.setNoticeTime(DateUtil.getCurrentDate().getTime());
+        vfDataShrt.setForecastTime(DateUtil.getCurrentDate().getTime());
         vfDataShrt.setNx(1);
         vfDataShrt.setNy(1);
         vfDataShrt.setCategory(VFCategoryShrt.POP);
@@ -95,7 +95,7 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.insVFDataShrt(vfDataShrt);
 
         // select for update
-        VFDataShrt selectForUpdate = vfInfoMapper.getVFDataShrtForUpdate(vfDataShrt.getNoticeAt(), vfDataShrt.getForecastAt(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
+        VFDataShrt selectForUpdate = vfInfoMapper.getVFDataShrtForUpdate(vfDataShrt.getNoticeTime(), vfDataShrt.getForecastTime(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
         Assertions.assertNotNull(selectForUpdate);
 
         // update
@@ -104,11 +104,11 @@ public class VFInfoMapperTest extends BaseBeanTest {
         vfInfoMapper.updVFDataShrt(selectForUpdate);
 
         // select
-        VFDataShrt select = vfInfoMapper.getVFDataShrt(vfDataShrt.getNoticeAt(), vfDataShrt.getForecastAt(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
+        VFDataShrt select = vfInfoMapper.getVFDataShrt(vfDataShrt.getNoticeTime(), vfDataShrt.getForecastTime(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
         Assertions.assertEquals(expectedValue, select.getValue());
 
         // delete
-        vfInfoMapper.delVFDataShrt(vfDataShrt.getNoticeAt(), vfDataShrt.getForecastAt(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
-        Assertions.assertNull(vfInfoMapper.getVFDataShrt(vfDataShrt.getNoticeAt(), vfDataShrt.getForecastAt(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory()));
+        vfInfoMapper.delVFDataShrt(vfDataShrt.getNoticeTime(), vfDataShrt.getForecastTime(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory());
+        Assertions.assertNull(vfInfoMapper.getVFDataShrt(vfDataShrt.getNoticeTime(), vfDataShrt.getForecastTime(), vfDataShrt.getNx(), vfDataShrt.getNy(), vfDataShrt.getCategory()));
     }
 }

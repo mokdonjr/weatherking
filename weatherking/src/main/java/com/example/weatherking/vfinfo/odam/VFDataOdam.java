@@ -7,19 +7,19 @@ import java.util.Date;
  * 초단기실황기록
  */
 public class VFDataOdam {
-    private Date noticeAt; // pk
+    private Long noticeTime; // pk
     private Integer nx; // pk
     private Integer ny; // pk
     private VFCategoryOdam category; // pk
     private String value;
     private Date createAt;
 
-    public Date getNoticeAt() {
-        return noticeAt;
+    public Long getNoticeTime() {
+        return noticeTime;
     }
 
-    public void setNoticeAt(Date noticeAt) {
-        this.noticeAt = noticeAt;
+    public void setNoticeTime(Long noticeTime) {
+        this.noticeTime = noticeTime;
     }
 
     public Integer getNx() {

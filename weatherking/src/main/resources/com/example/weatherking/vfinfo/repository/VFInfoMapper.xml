@@ -5,7 +5,7 @@
     <sql id="getVFDataOdam">
         SELECT *
         FROM VF_ODAM
-        WHERE notice_at = #{noticeAt}
+        WHERE notice_time = #{noticeTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}
@@ -23,8 +23,8 @@
     <sql id="insVFDataOdam">
         INSERT INTO VF_ODAM
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="vfDataOdam.noticeAt != null">
-                notice_at,
+            <if test="vfDataOdam.noticeTime != null">
+                notice_time,
             </if>
             <if test="vfDataOdam.nx != null">
                 nx,
@@ -43,8 +43,8 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="vfDataOdam.noticeAt != null">
-                #{vfDataOdam.noticeAt},
+            <if test="vfDataOdam.noticeTime != null">
+                #{vfDataOdam.noticeTime},
             </if>
             <if test="vfDataOdam.nx != null">
                 #{vfDataOdam.nx},
@@ -78,8 +78,8 @@
     <update id="updVFDataOdam" parameterType="com.example.weatherking.vfinfo.odam.VFDataOdam">
         UPDATE VF_ODAM
         <set>
-            <if test="vfDataOdam.noticeAt != null">
-                notice_at = #{vfDataOdam.noticeAt},
+            <if test="vfDataOdam.noticeTime != null">
+                notice_time = #{vfDataOdam.noticeTime},
             </if>
             <if test="vfDataOdam.nx != null">
                 nx = #{vfDataOdam.nx},
@@ -97,7 +97,7 @@
                 create_at = #{vfDataOdam.createAt},
             </if>
         </set>
-        WHERE notice_at = #{vfDataOdam.noticeAt}
+        WHERE notice_time = #{vfDataOdam.noticeTime}
         AND nx = #{vfDataOdam.nx}
         AND ny = #{vfDataOdam.ny}
         AND category = #{vfDataOdam.category}
@@ -105,7 +105,7 @@
 
     <delete id="delVFDataOdam">
         DELETE FROM VF_ODAM
-        WHERE notice_at = #{noticeAt}
+        WHERE notice_time = #{noticeTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}
@@ -114,8 +114,8 @@
     <sql id="getVFDataShrt">
         SELECT *
         FROM VF_SHRT
-        WHERE notice_at = #{noticeAt}
-        AND forecast_at = #{forecastAt}
+        WHERE notice_time = #{noticeTime}
+        AND forecast_time = #{forecastTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}
@@ -133,11 +133,11 @@
     <sql id="insVFDataShrt">
         INSERT INTO VF_SHRT
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="vfDataShrt.noticeAt != null">
-                notice_at,
+            <if test="vfDataShrt.noticeTime != null">
+                notice_time,
             </if>
-            <if test="vfDataShrt.forecastAt != null">
-                forecast_at,
+            <if test="vfDataShrt.forecastTime != null">
+                forecast_time,
             </if>
             <if test="vfDataShrt.nx != null">
                 nx,
@@ -156,11 +156,11 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="vfDataShrt.noticeAt != null">
-                #{vfDataShrt.noticeAt},
+            <if test="vfDataShrt.noticeTime != null">
+                #{vfDataShrt.noticeTime},
             </if>
-            <if test="vfDataShrt.forecastAt != null">
-                #{vfDataShrt.forecastAt},
+            <if test="vfDataShrt.forecastTime != null">
+                #{vfDataShrt.forecastTime},
             </if>
             <if test="vfDataShrt.nx != null">
                 #{vfDataShrt.nx},
@@ -194,11 +194,11 @@
     <update id="updVFDataShrt" parameterType="com.example.weatherking.vfinfo.shrt.VFDataShrt">
         UPDATE VF_SHRT
         <set>
-            <if test="vfDataShrt.noticeAt != null">
-                notice_at = #{vfDataShrt.noticeAt},
+            <if test="vfDataShrt.noticeTime != null">
+                notice_time = #{vfDataShrt.noticeTime},
             </if>
-            <if test="vfDataShrt.forecastAt != null">
-                forecast_at = #{vfDataShrt.forecastAt},
+            <if test="vfDataShrt.forecastTime != null">
+                forecast_time = #{vfDataShrt.forecastTime},
             </if>
             <if test="vfDataShrt.nx != null">
                 nx = #{vfDataShrt.nx},
@@ -216,8 +216,8 @@
                 create_at = #{vfDataShrt.createAt},
             </if>
         </set>
-        WHERE notice_at = #{vfDataShrt.noticeAt}
-        AND forecast_at = #{vfDataShrt.forecastAt}
+        WHERE notice_time = #{vfDataShrt.noticeTime}
+        AND forecast_time = #{vfDataShrt.forecastTime}
         AND nx = #{vfDataShrt.nx}
         AND ny = #{vfDataShrt.ny}
         AND category = #{vfDataShrt.category}
@@ -225,8 +225,8 @@
 
     <delete id="delVFDataShrt">
         DELETE FROM VF_SHRT
-        WHERE notice_at = #{noticeAt}
-        AND forecast_at = #{forecastAt}
+        WHERE notice_time = #{noticeTime}
+        AND forecast_time = #{forecastTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}
@@ -235,8 +235,8 @@
     <sql id="getVFDataVsrt">
         SELECT *
         FROM VF_VSRT
-        WHERE notice_at = #{noticeAt}
-        AND forecast_at = #{forecastAt}
+        WHERE notice_time = #{noticeTime}
+        AND forecast_time = #{forecastTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}
@@ -254,11 +254,11 @@
     <sql id="insVFDataVsrt">
         INSERT INTO VF_VSRT
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="vfDataVsrt.noticeAt != null">
-                notice_at,
+            <if test="vfDataVsrt.noticeTime != null">
+                notice_time,
             </if>
-            <if test="vfDataVsrt.forecastAt != null">
-                forecast_at,
+            <if test="vfDataVsrt.forecastTime != null">
+                forecast_time,
             </if>
             <if test="vfDataVsrt.nx != null">
                 nx,
@@ -277,11 +277,11 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="vfDataVsrt.noticeAt != null">
-                #{vfDataVsrt.noticeAt},
+            <if test="vfDataVsrt.noticeTime != null">
+                #{vfDataVsrt.noticeTime},
             </if>
-            <if test="vfDataVsrt.forecastAt != null">
-                #{vfDataVsrt.forecastAt},
+            <if test="vfDataVsrt.forecastTime != null">
+                #{vfDataVsrt.forecastTime},
             </if>
             <if test="vfDataVsrt.nx != null">
                 #{vfDataVsrt.nx},
@@ -315,11 +315,11 @@
     <update id="updVFDataVsrt" parameterType="com.example.weatherking.vfinfo.vsrt.VFDataVsrt">
         UPDATE VF_VSRT
         <set>
-            <if test="vfDataVsrt.noticeAt != null">
-                notice_at = #{vfDataVsrt.noticeAt},
+            <if test="vfDataVsrt.noticeTime != null">
+                notice_time = #{vfDataVsrt.noticeTime},
             </if>
-            <if test="vfDataVsrt.forecastAt != null">
-                forecast_at = #{vfDataVsrt.forecastAt},
+            <if test="vfDataVsrt.forecastTime != null">
+                forecast_time = #{vfDataVsrt.forecastTime},
             </if>
             <if test="vfDataVsrt.nx != null">
                 nx = #{vfDataVsrt.nx},
@@ -337,8 +337,8 @@
                 create_at = #{vfDataVsrt.createAt},
             </if>
         </set>
-        WHERE notice_at = #{vfDataVsrt.noticeAt}
-        AND forecast_at = #{vfDataVsrt.forecastAt}
+        WHERE notice_time = #{vfDataVsrt.noticeTime}
+        AND forecast_time = #{vfDataVsrt.forecastTime}
         AND nx = #{vfDataVsrt.nx}
         AND ny = #{vfDataVsrt.ny}
         AND category = #{vfDataVsrt.category}
@@ -346,8 +346,8 @@
 
     <delete id="delVFDataVsrt">
         DELETE FROM VF_VSRT
-        WHERE notice_at = #{noticeAt}
-        AND forecast_at = #{forecastAt}
+        WHERE notice_time = #{noticeTime}
+        AND forecast_time = #{forecastTime}
         AND nx = #{nx}
         AND ny = #{ny}
         AND category = #{category}

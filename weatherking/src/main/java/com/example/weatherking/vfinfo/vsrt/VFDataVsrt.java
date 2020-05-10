@@ -7,28 +7,28 @@ import java.util.Date;
  * 초단기예보기록
  */
 public class VFDataVsrt {
-    private Date noticeAt; // pk
-    private Date forecastAt; // pk
+    private Long noticeTime; // pk
+    private Long forecastTime; // pk
     private Integer nx; // pk
     private Integer ny; // pk
     private VFCategoryVsrt category; // pk
     private String value;
     private Date createAt;
 
-    public Date getNoticeAt() {
-        return noticeAt;
+    public Long getNoticeTime() {
+        return noticeTime;
     }
 
-    public void setNoticeAt(Date noticeAt) {
-        this.noticeAt = noticeAt;
+    public void setNoticeTime(Long noticeTime) {
+        this.noticeTime = noticeTime;
     }
 
-    public Date getForecastAt() {
-        return forecastAt;
+    public Long getForecastTime() {
+        return forecastTime;
     }
 
-    public void setForecastAt(Date forecastAt) {
-        this.forecastAt = forecastAt;
+    public void setForecastTime(Long forecastTime) {
+        this.forecastTime = forecastTime;
     }
 
     public Integer getNx() {

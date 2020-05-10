@@ -21,33 +21,33 @@ public interface VFInfoMapper {
      * VF_ODAM
      * 초단기실황기록
      */
-    VFDataOdam getVFDataOdam(@Param("noticeAt") Date noticeAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
-    VFDataOdam getVFDataOdamForUpdate(@Param("noticeAt") Date noticeAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
+    VFDataOdam getVFDataOdam(@Param("noticeTime") Long noticeTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
+    VFDataOdam getVFDataOdamForUpdate(@Param("noticeTime") Long noticeTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
     int insVFDataOdam(@Param("vfDataOdam") VFDataOdam vfDataOdam);
     int insupdVFDataOdam(@Param("vfDataOdam") VFDataOdam vfDataOdam);
     int updVFDataOdam(@Param("vfDataOdam") VFDataOdam vfDataOdam);
-    int delVFDataOdam(@Param("noticeAt") Date noticeAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
+    int delVFDataOdam(@Param("noticeTime") Long noticeTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryOdam category);
 
     /**
      * VF_VSRT
      * 초단기예보기록
      */
-    VFDataVsrt getVFDataVsrt(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
-    VFDataVsrt getVFDataVsrtForUpdate(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
+    VFDataVsrt getVFDataVsrt(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
+    VFDataVsrt getVFDataVsrtForUpdate(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
     int insVFDataVsrt(@Param("vfDataVsrt") VFDataVsrt vfDataVsrt);
     int insupdVFDataVsrt(@Param("vfDataVsrt") VFDataVsrt vfDataVsrt);
     int updVFDataVsrt(@Param("vfDataVsrt") VFDataVsrt vfDataVsrt);
-    int delVFDataVsrt(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
+    int delVFDataVsrt(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryVsrt category);
 
     /**
      * VF_SHRT
      * 동네예보기록
      */
-    VFDataShrt getVFDataShrt(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
-    VFDataShrt getVFDataShrtForUpdate(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
+    VFDataShrt getVFDataShrt(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
+    VFDataShrt getVFDataShrtForUpdate(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
     int insVFDataShrt(@Param("vfDataShrt") VFDataShrt vfDataShrt);
     int insupdVFDataShrt(@Param("vfDataShrt") VFDataShrt vfDataShrt);
     int updVFDataShrt(@Param("vfDataShrt") VFDataShrt vfDataShrt);
-    int delVFDataShrt(@Param("noticeAt") Date noticeAt, @Param("forecastAt") Date forecastAt, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
+    int delVFDataShrt(@Param("noticeTime") Long noticeTime, @Param("forecastTime") Long forecastTime, @Param("nx") int nx, @Param("ny") int ny, @Param("category") VFCategoryShrt category);
 
 }
