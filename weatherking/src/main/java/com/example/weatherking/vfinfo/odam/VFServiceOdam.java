@@ -1,7 +1,11 @@
 package com.example.weatherking.vfinfo.odam;
 
+import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.util.JsonUtil;
+import com.example.weatherking.vfinfo.common.config.VFConfig;
+import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.VFType;
+import com.example.weatherking.vfinfo.common.data.request.VFRequest;
 import com.example.weatherking.vfinfo.common.data.request.VFRequestParam;
 import com.example.weatherking.vfinfo.common.data.response.VFCategory;
 import com.example.weatherking.vfinfo.common.data.response.VFItem;
@@ -27,6 +31,22 @@ public class VFServiceOdam extends AbsVFService {
     @Override
     public VFItem getVFResponseItemInstance() {
         return new VFResponseItemOdam();
+    }
+
+    @Override
+    public VFRequest getVFRequestDefault() {
+        VFRequest vfRequest = new VFRequest();
+        vfRequest.setServiceKey(VFConfig.getServiceKey());
+        vfRequest.setPageNo(1);
+        vfRequest.setNumOfRows(10);
+        vfRequest.setDataType(VFDataType.JSON);
+        VFRequestParamOdam vfRequestParamOdam = new VFRequestParamOdam();
+        vfRequestParamOdam.setBase_date(DateUtil.dateToStringyyyyMMdd(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamOdam.setBase_time(DateUtil.dateToStringHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequestParamOdam.setNx(1);
+        vfRequestParamOdam.setNy(1);
+        vfRequest.setVfRequestParam(vfRequestParamOdam);
+        return vfRequest;
     }
 
     @Override

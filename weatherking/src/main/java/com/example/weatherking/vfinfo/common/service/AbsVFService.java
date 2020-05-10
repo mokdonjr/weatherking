@@ -96,6 +96,11 @@ public abstract class AbsVFService extends BaseBean implements VFService {
     protected abstract VFItem deserializeVFItem(JsonNode jsonNode);
 
     @Override
+    public VFResponseDefault requestDefault() {
+        return request(getVFRequestDefault());
+    }
+
+    @Override
     public VFResponseDefault request(VFRequest data) {
         var params = getParamsFromVFRequest(data);
         HttpResponse<String> response = httpGateService.getHttpService(HttpMethod.GET).request(getRequestUrl(), params);

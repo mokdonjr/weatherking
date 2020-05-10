@@ -31,7 +31,19 @@ public interface VFService {
     VFItem getVFResponseItemInstance();
 
     /**
+     * 동네예보 요청 파라미터 가져오기
+     * @return
+     */
+    VFRequest getVFRequestDefault();
+
+    /**
      * 동네예보 요청하기
+     * @return
+     */
+    VFResponseDefault requestDefault();
+
+    /**
+     * 동네예보 파라미터로 요청하기
      * @param data
      * @return
      */

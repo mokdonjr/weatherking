@@ -1,8 +1,12 @@
 package com.example.weatherking.vfinfo.version;
 
+import com.example.weatherking.util.DateUtil;
 import com.example.weatherking.util.JsonUtil;
+import com.example.weatherking.vfinfo.common.config.VFConfig;
+import com.example.weatherking.vfinfo.common.data.VFDataType;
 import com.example.weatherking.vfinfo.common.data.VFFileType;
 import com.example.weatherking.vfinfo.common.data.VFType;
+import com.example.weatherking.vfinfo.common.data.request.VFRequest;
 import com.example.weatherking.vfinfo.common.data.request.VFRequestParam;
 import com.example.weatherking.vfinfo.common.data.response.VFCategory;
 import com.example.weatherking.vfinfo.common.data.response.VFItem;
@@ -28,6 +32,21 @@ public class VFServiceVersion extends AbsVFService {
     @Override
     public VFItem getVFResponseItemInstance() {
         return new VFResponseItemVersion();
+    }
+
+    @Override
+    public VFRequest getVFRequestDefault() {
+        VFRequest vfRequest = new VFRequest();
+        vfRequest.setServiceKey(VFConfig.getServiceKey());
+        vfRequest.setPageNo(1);
+        vfRequest.setNumOfRows(10);
+        vfRequest.setDataType(VFDataType.JSON);
+        VFRequestParamVersion vfRequestParamVersion = new VFRequestParamVersion();
+        // TODO : 파라미터를 어떻게 넘길것인지
+        vfRequestParamVersion.setFtype(VFFileType.ODAM);
+        vfRequestParamVersion.setBasedatetime(DateUtil.dateToStringyyyyMMddHHmm(DateUtil.getDateAfterHours(-1)));
+        vfRequest.setVfRequestParam(vfRequestParamVersion);
+        return vfRequest;
     }
 
     @Override
